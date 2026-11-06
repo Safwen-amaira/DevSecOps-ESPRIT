@@ -39,11 +39,13 @@ repos:
 
   # ---- 2. SECRET DETECTION (Gitleaks) ----------------------
   # Blocks commits containing API keys, tokens, passwords, etc.
-  - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.21.2
+  - repo: local
     hooks:
-      - id: gitleaks
-        name: "[SECURITY] Gitleaks — Scan for exposed secrets"
+      - id: gitleaks-staged
+        name: "[SECURITY] Gitleaks — Scan staged files for secrets"
+        entry: gitleaks protect --staged --redact --no-banner
+        language: system
+        pass_filenames: false
 
   # ---- 3. SECRET DETECTION (HMRC Hooks - secondary layer) --
   - repo: https://github.com/hmrc/security-git-hooks
@@ -81,8 +83,8 @@ repos:
   # Runs project-specific Java security rules before commit
   - repo: local
     hooks:
-      - id: semgrep-custom-security
-        name: "[SAST] Semgrep — project security rules"
+      - id: semgrep-java-security
+        name: "[SAST] Semgrep — Java and project security rules"
         entry: semgrep scan
         args:
           - --config=p/java
