@@ -6,7 +6,6 @@
 #
 # To install: pre-commit install
 # To run manually: pre-commit run --all-files
-# To skip (emergency only): SKIP=gitleaks git commit -m "..."
 # ============================================================
 
 repos:
@@ -30,6 +29,7 @@ repos:
       - id: check-added-large-files
         name: "[Hygiene] Block large file commits (>1MB)"
         args: ['--maxkb=1024']
+        exclude: '^screenshots/'
       - id: detect-private-key
         name: "[SECURITY] Detect private keys in staged files"
       - id: check-executables-have-shebangs
