@@ -1,0 +1,174 @@
+rules:
+  # ============================================================
+  # Custom Semgrep Rules for DevSecOps Project
+  # Esprit 5NIDS5 — Timesheet DevOps Application
+  # Based on OWASP Top 10 2021
+  # ============================================================
+
+  # A01: Broken Access Control
+  - id: missing-authorization-annotation
+    patterns:
+      - pattern: |
+          @RequestMapping(...)
+          public $TYPE $METHOD(...) { ... }
+      - pattern-not: |
+          @PreAuthorize(...)
+          @RequestMapping(...)
+          public $TYPE $METHOD(...) { ... }
+      - pattern-not: |
+          @Secured(...)
+          @RequestMapping(...)
+          public $TYPE $METHOD(...) { ... }
+    message: |
+      SECURITY [A01-BrokenAccessControl]: REST endpoint '$METHOD' has no authorization annotation.
+      Add @PreAuthorize or @Secured to enforce access control.
+    severity: WARNING
+    languages: [java]
+    metadata:
+      owasp: A01:2021
+      cwe: CWE-862
+
+  # A02: Cryptographic Failures — Hardcoded secrets
+  - id: hardcoded-password
+    patterns:
+      - pattern: String $PWD = "...";
+      - metavariable-regex:
+          metavariable: $PWD
+          regex: ".*(password|passwd|secret|api_key|apikey|token|auth).*"
+    message: |
+      SECURITY [A02-CryptographicFailure]: Possible hardcoded credential in variable '$PWD'.
+      Use environment variables or a secret manager (Vault) instead.
+    severity: ERROR
+    languages: [java]
+    metadata:
+      owasp: A02:2021
+      cwe: CWE-798
+
+  # A02: Weak cryptography — MD5/SHA1
+  - id: weak-hash-algorithm
+    patterns:
+      - pattern: MessageDigest.getInstance("MD5")
+    message: |
+      SECURITY [A02-CryptographicFailure]: MD5 is cryptographically broken.
+      Use SHA-256 or SHA-3 instead: MessageDigest.getInstance("SHA-256").
+    severity: ERROR
+    languages: [java]
+    metadata:
+      owasp: A02:2021
+      cwe: CWE-327
+
+  - id: weak-hash-algorithm-sha1
+    patterns:
+      - pattern: MessageDigest.getInstance("SHA-1")
+    message: |
+      SECURITY [A02-CryptographicFailure]: SHA-1 is cryptographically weak.
+      Use SHA-256 or stronger.
+    severity: ERROR
+    languages: [java]
+    metadata:
+      owasp: A02:2021
+      cwe: CWE-327
+
+  # A03: Injection — SQL Injection
+  - id: sql-injection-string-concat
+    patterns:
+      - pattern: |
+          $QUERY = "... " + $INPUT + "...";
+          $CONN.$EXECUTE($QUERY);
+      - pattern-not: |
+          PreparedStatement $STMT = ...;
+    message: |
+      SECURITY [A03-Injection]: Potential SQL injection via string concatenation.
+      Use PreparedStatement with parameterized queries.
+    severity: ERROR
+    languages: [java]
+    metadata:
+      owasp: A03:2021
+      cwe: CWE-89
+
+  # A03: Injection — Command Injection
+  - id: command-injection
+    patterns:
+      - pattern: Runtime.getRuntime().exec($CMD)
+      - metavariable-regex:
+          metavariable: $CMD
+          regex: ".+"
+    message: |
+      SECURITY [A03-Injection]: Possible command injection.
+      '$CMD' appears to include user-controlled input. Use ProcessBuilder with explicit argument list.
+    severity: ERROR
+    languages: [java]
+    metadata:
+      owasp: A03:2021
+      cwe: CWE-78
+
+  # A05: Security Misconfiguration — CORS wildcard
+  - id: cors-wildcard
+    patterns:
+      - pattern: |
+          @CrossOrigin(origins = "*")
+    message: |
+      SECURITY [A05-SecurityMisconfiguration]: CORS wildcard '*' allows any origin.
+      Restrict to specific trusted domains.
+    severity: WARNING
+    languages: [java]
+    metadata:
+      owasp: A05:2021
+      cwe: CWE-942
+
+  # A07: Identification and Authentication Failures
+  - id: insecure-random
+    patterns:
+      - pattern: new Random()
+    message: |
+      SECURITY [A07-AuthFailures]: java.util.Random is not cryptographically secure.
+      For security-sensitive operations (tokens, session IDs), use java.security.SecureRandom.
+    severity: WARNING
+    languages: [java]
+    metadata:
+      owasp: A07:2021
+      cwe: CWE-330
+
+  # A09: Security Logging and Monitoring Failures
+  - id: system-out-logging
+    patterns:
+      - pattern: System.out.println(...)
+    message: |
+      SECURITY [A09-LoggingFailures]: System.out.println bypasses structured logging.
+      Use SLF4J logger: log.info("...", ...) to ensure logs are centrally collected and monitored.
+    severity: INFO
+    languages: [java]
+    metadata:
+      owasp: A09:2021
+      cwe: CWE-778
+
+  - id: sensitive-data-in-logs
+    patterns:
+      - pattern: log.$LEVEL("..." + $VAR + "...")
+      - metavariable-regex:
+          metavariable: $VAR
+          regex: ".*(password|token|secret|key|auth|credential).*"
+    message: |
+      SECURITY [A09-LoggingFailures]: Possible sensitive data '$VAR' in log statement.
+      Never log passwords, tokens, or secrets.
+    severity: ERROR
+    languages: [java]
+    metadata:
+      owasp: A09:2021
+      cwe: CWE-532
+
+  # A10: Server-Side Request Forgery (SSRF)
+  - id: ssrf-url-from-input
+    patterns:
+      - pattern: new URL($INPUT).openConnection()
+      - pattern-not: |
+          String $URL = "https://...";
+          new URL($URL).openConnection()
+    message: |
+      SECURITY [A10-SSRF]: URL constructed from external input without validation.
+      Validate and whitelist allowed hosts before making HTTP requests.
+    severity: ERROR
+    languages: [java]
+    metadata:
+      owasp: A10:2021
+      cwe: CWE-918

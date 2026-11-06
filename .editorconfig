@@ -1,0 +1,60 @@
+# ============================================================
+# EditorConfig — DevSecOps Project Standards
+# ============================================================
+# Enforces consistent coding style across all editors and IDEs.
+# IntelliJ IDEA, VS Code, etc. all respect this file natively.
+# ============================================================
+
+root = true
+
+# ---- All files ----
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 120
+
+# ---- Java source files ----
+[*.java]
+indent_size = 4
+indent_style = space
+# Spring Boot / Google Java Style
+continuation_indent_size = 8
+
+# ---- XML / Maven POM ----
+[*.xml]
+indent_size = 2
+
+# ---- YAML / CI pipeline files ----
+[*.{yml,yaml}]
+indent_size = 2
+indent_style = space
+
+# ---- JSON ----
+[*.json]
+indent_size = 2
+
+# ---- Dockerfile ----
+[Dockerfile*]
+indent_size = 4
+
+# ---- Shell scripts ----
+[*.sh]
+indent_size = 2
+end_of_line = lf
+
+# ---- Properties files ----
+[*.properties]
+charset = utf-8
+
+# ---- Markdown ----
+[*.md]
+trim_trailing_whitespace = false
+
+# ---- Jenkinsfile / Groovy ----
+[Jenkinsfile]
+indent_size = 4
+indent_style = space
