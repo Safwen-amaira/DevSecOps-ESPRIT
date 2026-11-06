@@ -22,7 +22,7 @@ pre-commit run --all-files
 mvn --batch-mode test
 ```
 
-Hooks are feedback before commit; CI repeats the security checks on every push and pull request. IDE users can enable SonarLint/SonarQube for continuous feedback and use the repository's Semgrep rules for Java findings.
+Hooks are feedback before commit; CI repeats the security checks on every push and pull request. IDE users can enable SonarLint/SonarQube for continuous feedback and use the repository's Semgrep rules for Java findings. `security/checkstyle-security.xml` is an optional IntelliJ CheckStyle-IDEA profile; GitHub Actions does not claim Checkstyle as a CI gate.
 
 ## Exemption process
 

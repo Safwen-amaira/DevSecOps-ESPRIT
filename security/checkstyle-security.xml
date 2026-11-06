@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+  "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+  "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<!--
+  DevSecOps Security-Focused Checkstyle Configuration
+  Based on OWASP Secure Coding Practices
+  Optional local profile for the IntelliJ CheckStyle-IDEA plugin; CI gates use Semgrep and Trivy.
+-->
+<module name="Checker">
+  <property name="charset" value="UTF-8"/>
+  <property name="severity" value="warning"/>
+  <property name="fileExtensions" value="java"/>
+
+  <!-- =================== FILE HEADER =================== -->
+  <module name="NewlineAtEndOfFile"/>
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true"/>
+  </module>
+
+  <!-- =================== SECURITY CHECKS =================== -->
+  <module name="TreeWalker">
+
+    <!-- Detect hardcoded passwords/secrets -->
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="HardCodedPassword"/>
+      <property name="format" value="(password|passwd|secret|apikey|api_key|token)\s*=\s*&quot;[^&quot;]+&quot;"/>
+      <property name="ignoreCase" value="true"/>
+      <property name="message" value="SECURITY: Possible hardcoded credential detected. Use environment variables or vault instead."/>
+      <property name="severity" value="error"/>
+    </module>
+
+    <!-- Detect SQL concatenation (potential SQL injection) -->
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="SQLInjection"/>
+      <property name="format" value="(executeQuery|executeUpdate|prepareStatement|createQuery)\s*\(\s*&quot;.*\+"/>
+      <property name="message" value="SECURITY: Potential SQL injection. Use parameterized queries or PreparedStatement."/>
+      <property name="severity" value="error"/>
+    </module>
+
+    <!-- Detect use of System.out for logging (should use SLF4J/logback) -->
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="SystemOutPrint"/>
+      <property name="format" value="System\.(out|err)\.print"/>
+      <property name="message" value="SECURITY/QUALITY: Avoid System.out/err for logging. Use a proper logging framework (SLF4J)."/>
+      <property name="severity" value="warning"/>
+    </module>
+
+    <!-- Detect printStackTrace -->
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="PrintStackTrace"/>
+      <property name="format" value="\.printStackTrace\(\)"/>
+      <property name="message" value="SECURITY: printStackTrace leaks stack traces to output. Use a logger instead."/>
+      <property name="severity" value="warning"/>
+    </module>
+
+    <!-- Detect insecure HTTP (not HTTPS) -->
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="InsecureHTTP"/>
+      <property name="format" value="&quot;http://"/>
+      <property name="message" value="SECURITY: Use HTTPS instead of HTTP for external connections."/>
+      <property name="severity" value="warning"/>
+    </module>
+
+    <!-- Detect use of MD5 or SHA1 (weak hash) -->
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="WeakHash"/>
+      <property name="format" value="MessageDigest\.getInstance\(\s*&quot;(MD5|SHA-1|SHA1)&quot;"/>
+      <property name="message" value="SECURITY: MD5 and SHA-1 are cryptographically weak. Use SHA-256 or stronger."/>
+      <property name="severity" value="error"/>
+    </module>
+
+    <!-- Detect Random (not SecureRandom) for security-sensitive contexts -->
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="InsecureRandom"/>
+      <property name="format" value="new\s+Random\(\)"/>
+      <property name="message" value="SECURITY: Use SecureRandom instead of Random for security-sensitive operations."/>
+      <property name="severity" value="warning"/>
+    </module>
+
+    <!-- =================== CODE QUALITY =================== -->
+    <module name="ConstantName"/>
+    <module name="LocalVariableName"/>
+    <module name="MemberName"/>
+    <module name="MethodName"/>
+    <module name="ParameterName"/>
+    <module name="TypeName"/>
+
+    <!-- Detect empty catch blocks (swallowing exceptions hides security issues) -->
+    <module name="EmptyCatchBlock">
+      <property name="exceptionVariableName" value="expected|ignore"/>
+    </module>
+
+    <!-- Avoid overly broad exception catching -->
+    <module name="IllegalCatch">
+      <property name="illegalClassNames" value="java.lang.Throwable, java.lang.RuntimeException, java.lang.Exception"/>
+    </module>
+
+    <!-- Detect magic numbers -->
+    <module name="MagicNumber">
+      <property name="ignoreNumbers" value="-1, 0, 1, 2"/>
+    </module>
+
+    <!-- Enforce braces (prevents dangling-else vulnerabilities) -->
+    <module name="NeedBraces"/>
+
+    <!-- Detect unnecessary trailing whitespace -->
+    <module name="WhitespaceAround"/>
+
+    <!-- Import checks -->
+    <module name="IllegalImport">
+      <property name="illegalPkgs" value="sun"/>
+    </module>
+
+    <!-- Avoid deeply nested code (complexity) -->
+    <module name="CyclomaticComplexity">
+      <property name="max" value="10"/>
+      <property name="severity" value="warning"/>
+    </module>
+
+  </module>
+</module>
