@@ -1,0 +1,244 @@
+# ============================================================
+# DevSecOps Infrastructure Stack — Projet ESPRIT 5NIDS5
+# Auteur  : Safwen Amaira  (amairasafwen@gmail.com)
+# Cours   : Taoufik Bessrour — DevSecOps CI/CD
+#
+# Services inclus :
+#   - Jenkins      : orchestration CI/CD + pipeline DevSecOps
+#   - SonarQube    : SAST + Quality Gates
+#   - PostgreSQL   : base de données pour SonarQube
+#   - Nexus        : registre d'artefacts Maven (releases)
+#   - Prometheus   : collecte des métriques
+#   - Grafana      : tableau de bord de monitoring
+#
+# Ports exposés :
+#   8080  → Jenkins
+#   9000  → SonarQube
+#   8081  → Nexus
+#   9090  → Prometheus
+#   3000  → Grafana
+#
+# Démarrage :
+#   cp .env.example .env
+#   # Replace the sample values in .env with local random passwords.
+#   docker compose --env-file .env -f docker-compose.infra.yml up -d
+#
+# Arrêt :
+#   docker compose -f docker-compose.infra.yml down
+# ============================================================
+
+services:
+
+  # ===========================================================
+  # JENKINS — Orchestrateur CI/CD
+  # Pipeline DevSecOps : build, test, SAST, SCA, scan Docker,
+  # déploiement Kubernetes, DAST, scan secrets, monitoring
+  # ===========================================================
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: jenkins
+    restart: unless-stopped
+    user: root
+    ports:
+      - "127.0.0.1:8080:8080"   # Jenkins UI, local machine only
+      - "127.0.0.1:50000:50000" # Agent port, local machine only
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock   # Docker-in-Docker pour builder les images
+      - /usr/bin/docker:/usr/bin/docker             # Binaire Docker disponible dans Jenkins
+    environment:
+      JAVA_OPTS: >-
+        -Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=false
+      JENKINS_OPTS: "--httpPort=8080"
+    networks:
+      - devsecops-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8080/login || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 90s
+
+  # ===========================================================
+  # POSTGRESQL — Base de données de SonarQube
+  # SonarQube nécessite PostgreSQL 12+ pour stocker les analyses
+  # ===========================================================
+  sonar-db:
+    image: postgres:15-alpine
+    container_name: sonar-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: ${SONAR_DB_PASSWORD:?Set SONAR_DB_PASSWORD in .env}
+      POSTGRES_DB: sonarqube
+    volumes:
+      - sonar_db_data:/var/lib/postgresql/data
+    networks:
+      - devsecops-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sonar -d sonarqube"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ===========================================================
+  # SONARQUBE — SAST + Quality Gates
+  # Analyse statique du code source, détection de failles,
+  # code smells, couverture de tests, quality gates bloquants
+  # Outils couverts : SonarQube Community Edition
+  # Accès : http://localhost:9000  (initialiser le mot de passe administrateur)
+  # ===========================================================
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube
+    restart: unless-stopped
+    depends_on:
+      sonar-db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:9000:9000"
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://sonar-db:5432/sonarqube
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: ${SONAR_DB_PASSWORD:?Set SONAR_DB_PASSWORD in .env}
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"    # Utile en développement local
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    networks:
+      - devsecops-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9000/api/system/status | grep -q '\"status\":\"UP\"' || exit 1"]
+      interval: 30s
+      timeout: 15s
+      retries: 15
+      start_period: 120s
+
+  # ===========================================================
+  # NEXUS — Registre d'artefacts Maven
+  # Stockage des JARs buildés, proxy du dépôt Maven Central,
+  # utilisé par la stage "Publish Artifact" du Jenkinsfile
+  # pom.xml pointe sur : http://localhost:8081/repository/maven-releases/
+  # Accès : http://localhost:8081  (admin / admin123 après init)
+  # ===========================================================
+  nexus:
+    image: sonatype/nexus3:latest
+    container_name: nexus
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:8081"
+    volumes:
+      - nexus_data:/nexus-data
+    environment:
+      INSTALL4J_ADD_VM_PARAMS: >-
+        -Xms512m -Xmx1200m
+        -XX:MaxDirectMemorySize=2g
+        -Djava.util.prefs.userRoot=/nexus-data/javaprefs
+    networks:
+      - devsecops-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8081/service/rest/v1/status || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 15
+      start_period: 120s
+
+  # ===========================================================
+  # PROMETHEUS — Collecte de métriques
+  # Scrape Jenkins (/prometheus endpoint), l'app timesheet,
+  # et lui-même. Utilisé par la stage "Prometheus & Grafana"
+  # du Jenkinsfile pour vérifier la disponibilité des targets
+  # Accès : http://localhost:9090
+  # ===========================================================
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+      - "--web.enable-lifecycle"           # Permet le rechargement à chaud de la config
+    networks:
+      - devsecops-net
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:9090/-/healthy || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+  # ===========================================================
+  # GRAFANA — Tableau de bord de monitoring
+  # Visualise les métriques Prometheus : builds Jenkins,
+  # santé de l'app, CVEs détectées, tendances de sécurité
+  # Accès : http://localhost:3000  (compte admin et mot de passe défini dans .env)
+  # ===========================================================
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Set GRAFANA_ADMIN_PASSWORD in .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_SERVER_DOMAIN: localhost
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      # Provisioning automatique de Prometheus comme datasource
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    networks:
+      - devsecops-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:3000/api/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+# ============================================================
+# VOLUMES — Persistance des données entre redémarrages
+# ============================================================
+volumes:
+  jenkins_home:
+    name: jenkins_home
+  sonar_db_data:
+    name: sonar_db_data
+  sonarqube_data:
+    name: sonarqube_data
+  sonarqube_extensions:
+    name: sonarqube_extensions
+  sonarqube_logs:
+    name: sonarqube_logs
+  nexus_data:
+    name: nexus_data
+  prometheus_data:
+    name: prometheus_data
+  grafana_data:
+    name: grafana_data
+
+# ============================================================
+# RÉSEAU — Isolé pour la stack DevSecOps
+# Jenkins peut atteindre SonarQube, Nexus, Prometheus et Grafana
+# via leurs noms de service (DNS Docker interne)
+# ============================================================
+networks:
+  devsecops-net:
+    name: devsecops-net
+    driver: bridge

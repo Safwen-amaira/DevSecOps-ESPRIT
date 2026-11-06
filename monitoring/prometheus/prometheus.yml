@@ -1,16 +1,38 @@
+# ============================================================
+# Configuration Prometheus — DevSecOps ESPRIT 5NIDS5
+# Auteur : Safwen Amaira (amairasafwen@gmail.com)
+# ============================================================
+
 global:
-  scrape_interval: 15s
+  scrape_interval: 15s          # Collecte toutes les 15 secondes
+  evaluation_interval: 15s      # Évalue les règles d'alerte toutes les 15s
 
 scrape_configs:
+
+  # Prometheus lui-même
   - job_name: 'prometheus'
     static_configs:
       - targets: ['localhost:9090']
 
+  # Jenkins — endpoint /prometheus (plugin Prometheus Metrics requis)
+  # En Docker Compose : jenkins:8080  |  En local hôte : host.docker.internal:8080
   - job_name: 'jenkins'
     metrics_path: /prometheus
     static_configs:
-      - targets: ['host.docker.internal:8080']
-  - job_name: 'pushgateway'
-    honor_labels: true
+      - targets: ['jenkins:8080']
+
+  # Application Timesheet (Spring Boot sur Docker Compose)
+  - job_name: 'timesheet-app'
+    metrics_path: /timesheet-devops/actuator/prometheus
     static_configs:
-      - targets: ['pushgateway-prometheus-pushgateway.chap4.svc.cluster.local:9091']
+      - targets: ['timesheet-app:8082']
+
+  # SonarQube (optionnel — nécessite le plugin Prometheus pour SonarQube)
+  - job_name: 'sonarqube'
+    static_configs:
+      - targets: ['sonarqube:9000']
+
+  # Grafana lui-même
+  - job_name: 'grafana'
+    static_configs:
+      - targets: ['grafana:3000']

@@ -35,3 +35,15 @@ Emergency bypasses must be approved by the repository maintainers, logged in the
 GitHub Actions reports are attached to each run as `devsecops-reports-<run id>`. Jenkins additionally archives its reports and publishes its HTML summary. The committed screenshots under `screenshots/` and `reports/` are illustrative snapshots, not proof that a current build passed. Record fresh run links and attach fresh scan exports when preparing the final project report and presentation.
 
 The GitHub workflow gates CRITICAL findings for dependencies, IaC, and images. In the current Jenkinsfile, dependency and IaC scans are non-blocking, and the image scan uses `TRIVY_EXIT_CODE=0`, so it is report-only. Align Jenkins' SCA/IaC/image thresholds with the intended policy and confirm the Jenkins parameter and webhook configuration in the deployment environment before claiming those controls are blocking and push-triggered.
+
+## Local reporting infrastructure
+
+The optional Jenkins, SonarQube, Nexus, Prometheus, and Grafana stack is defined in `docker-compose.infra.yml`. It binds web ports to localhost and requires credentials from an ignored `.env` file:
+
+```sh
+cp .env.example .env
+# Replace the sample passwords with local random values.
+docker compose --env-file .env -f docker-compose.infra.yml up -d
+```
+
+Jenkins still receives access to the host Docker socket so it can build images. Treat this as a trusted local lab only; a Jenkins administrator with that socket can control the Docker host. Do not expose this stack to an untrusted network or reuse its local credentials elsewhere.
