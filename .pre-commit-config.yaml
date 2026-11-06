@@ -56,21 +56,6 @@ repos:
         name: "[SECURITY] HMRC — Block sensitive file names"
         exclude: "\\.(tar|gz|jar|7z|rar|bz2|zip|gzip|war|ear|xlsx|xls|docx|doc|pptx|pdf|jpg|png|jpeg|tif|tiff|gif|bmp|webp|svg|ico|psd|exe|dll|dmg|rpm)$"
 
-  # ---- 4. SAST — Semgrep Static Analysis -------------------
-  # Detects: SQL injection, XSS, hardcoded secrets, OWASP Top 10
-  - repo: https://github.com/returntocorp/semgrep
-    rev: v1.100.0
-    hooks:
-      - id: semgrep
-        name: "[SAST] Semgrep — Java security rules"
-        args:
-          - --config=p/java
-          - --config=p/owasp-top-ten
-          - --config=p/secrets
-          - --error
-          - --severity=ERROR
-        types: [java]
-
   # ---- 5. DOCKER SECURITY ----------------------------------
   # Basic Dockerfile best-practice checks
   - repo: https://github.com/hadolint/hadolint
@@ -98,6 +83,13 @@ repos:
     hooks:
       - id: semgrep-custom-security
         name: "[SAST] Semgrep — project security rules"
-        entry: semgrep --config=security/semgrep-rules.yml --error
+        entry: semgrep scan
+        args:
+          - --config=p/java
+          - --config=p/owasp-top-ten
+          - --config=p/secrets
+          - --config=security/semgrep-rules.yml
+          - --error
+          - --severity=ERROR
         language: system
         types: [java]

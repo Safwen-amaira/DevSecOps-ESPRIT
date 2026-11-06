@@ -14,7 +14,7 @@ Blocking gates are failed tests, detected secrets, Semgrep ERROR findings, and u
 
 ## Local developer setup
 
-Install Java 17, Maven, Docker, pre-commit, and Semgrep. From the repository root:
+Install Java 17, Maven, Docker, pre-commit, Semgrep, and Gitleaks (available on `PATH`). From the repository root:
 
 ```sh
 pre-commit install
