@@ -30,7 +30,7 @@ spec:
 
       containers:
         - name: timesheet
-          image: nourchaibi/timesheet:7
+          image: amairasafwen/timesheet:latest
 
           ports:
             - containerPort: 8082

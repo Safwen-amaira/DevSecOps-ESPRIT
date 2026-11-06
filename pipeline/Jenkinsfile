@@ -59,7 +59,7 @@ pipeline {
     environment {
 
         // Docker
-        DOCKER_REPOSITORY = 'nourchaibi/timesheet'
+        DOCKER_REPOSITORY = 'amairasafwen/timesheet'
         DOCKER_IMAGE      = "${DOCKER_REPOSITORY}:${BUILD_NUMBER}"
 
         // Kubernetes
@@ -80,7 +80,7 @@ pipeline {
         SONAR_PROJECT_KEY = 'tn.esprit.spring.services:timesheet-devops'
 
         // Notification
-        NOTIFY_EMAIL      = 'nwirachaibi@gmail.com'
+        NOTIFY_EMAIL      = 'amairasafwen@gmail.com'
 
         // DevSecOps
         REPORTS_DIR       = 'reports'
@@ -236,7 +236,7 @@ for v in data.get("vulnerabilities", []):
                         checkout([
                             $class: 'GitSCM',
                             branches: [[name: '*/master']],
-                            userRemoteConfigs: [[url: 'https://github.com/nourchaibi1/devsecops-project.git']],
+                            userRemoteConfigs: [[url: 'https://github.com/Safwen-amaira/DevSecOps-ESPRIT.git']],
                             extensions: [[$class: 'CleanBeforeCheckout']]
                         ])
                         sh '''
@@ -511,7 +511,7 @@ for v in data.get("vulnerabilities", []):
                         withCredentials([string(credentialsId: 'dockerhub-token', variable: 'DOCKER_TOKEN')]) {
                             sh '''
                                 set -e
-                                echo "$DOCKER_TOKEN" | docker login -u nourchaibi --password-stdin
+                                echo "$DOCKER_TOKEN" | docker login -u amairasafwen --password-stdin
 
                                 for i in 1 2 3; do
                                     if docker push "${DOCKER_IMAGE}"; then

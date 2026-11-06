@@ -453,7 +453,7 @@ Verified container remediation:
 Each image is tagged using the Jenkins build number:
 
 ```text
-nourchaibi/timesheet:<BUILD_NUMBER>
+amairasafwen/timesheet:<BUILD_NUMBER>
 ```
 
 This provides traceability between the Jenkins execution, scan results, registry image, Kubernetes deployment, and Trivy Operator report.
