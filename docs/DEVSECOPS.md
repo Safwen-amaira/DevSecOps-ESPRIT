@@ -1,0 +1,37 @@
+# DevSecOps pipeline: current state and operating guide
+
+## As-is inventory
+
+The repository already contains a Jenkins pipeline in `pipeline/Jenkinsfile`. It builds and tests the Spring Boot application, submits SonarQube analysis and waits for its Quality Gate, scans dependencies and Kubernetes configuration with Trivy, builds and scans a container, then deploys to Kubernetes for health checks, ZAP DAST, and runtime/operations checks. Jenkins archives reports and sends email notifications. Local pre-commit hooks provide an early secret and SAST check.
+
+The Jenkins stages require provisioned Jenkins plugins, credentials, Docker, Kubernetes, SonarQube, Vault, and the named runtime tools. A Jenkinsfile alone does not configure a GitHub webhook or Multibranch Pipeline. Configure the Jenkins GitHub push and pull-request triggers in the Jenkins job and repository webhook for that environment. Never put Jenkins credentials in this repository.
+
+## To-be automation
+
+`.github/workflows/devsecops.yml` now runs on pushes and pull requests targeting `master` or `main`, and can be launched manually. It runs Maven tests, Gitleaks over Git history, custom Semgrep rules, Trivy dependency and image scans, an image build, and OWASP ZAP against a running test application. JSON/HTML/log outputs are uploaded as a 30-day GitHub Actions artifact, including when a gate fails.
+
+Blocking gates are failed tests, detected secrets, Semgrep ERROR findings, and unfixed CRITICAL dependency or image vulnerabilities. HIGH Trivy findings and ZAP informational/warning findings are reported for triage. Update the critical threshold only through a reviewed change with a documented risk rationale.
+
+## Local developer setup
+
+Install Java 17, Maven, Docker, pre-commit, and Semgrep. From the repository root:
+
+```sh
+pre-commit install
+pre-commit run --all-files
+mvn --batch-mode test
+```
+
+Hooks are feedback before commit; CI repeats the security checks on every push and pull request. IDE users can enable SonarLint/SonarQube for continuous feedback and use the repository's Semgrep rules for Java findings.
+
+## Exemption process
+
+A gate may be exempted only for a confirmed false positive or a documented, time-bounded accepted risk. Open an issue and link it in the pull request; record the scanner, rule or CVE, affected file/component, evidence for the decision, compensating control, owner, approver, and expiry/remediation date. Exempt the narrow rule or component using the scanner's supported suppression mechanism with a reason and issue reference. Do not disable a whole scanner, weaken the global threshold, or add credentials to the exemption. A reviewer other than the author must approve it. Remove the exception when fixed or at expiry, and rerun the affected scan.
+
+Emergency bypasses must be approved by the repository maintainers, logged in the issue and pull request, and followed by a remediation commit. Never use `SKIP=gitleaks` to conceal an unreviewed secret; exposed credentials must be revoked and rotated.
+
+## Reports and follow-up
+
+GitHub Actions reports are attached to each run as `devsecops-reports-<run id>`. Jenkins additionally archives its reports and publishes its HTML summary. The committed screenshots under `screenshots/` and `reports/` are illustrative snapshots, not proof that a current build passed. Record fresh run links and attach fresh scan exports when preparing the final project report and presentation.
+
+The GitHub workflow gates CRITICAL findings for dependencies, IaC, and images. In the current Jenkinsfile, dependency and IaC scans are non-blocking, and the image scan uses `TRIVY_EXIT_CODE=0`, so it is report-only. Align Jenkins' SCA/IaC/image thresholds with the intended policy and confirm the Jenkins parameter and webhook configuration in the deployment environment before claiming those controls are blocking and push-triggered.
