@@ -159,11 +159,7 @@ rules:
 
   # A10: Server-Side Request Forgery (SSRF)
   - id: ssrf-url-from-input
-    patterns:
-      - pattern: new URL($INPUT).openConnection()
-      - pattern-not: |
-          String $URL = "https://...";
-          new URL($URL).openConnection()
+    pattern: new URL($INPUT).openConnection()
     message: |
       SECURITY [A10-SSRF]: URL constructed from external input without validation.
       Validate and whitelist allowed hosts before making HTTP requests.
