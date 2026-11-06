@@ -1,0 +1,136 @@
+name: DevSecOps
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: devsecops-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  security:
+    name: Tests and security gates
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_PASSWORD: ci-only-password
+          MYSQL_DATABASE: timesheet-devops-db
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -pci-only-password"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - name: Checkout full history for secret scanning
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Run unit tests and package application
+        id: tests
+        run: mvn --batch-mode --no-transfer-progress package
+
+      - name: Scan Git history for secrets (Gitleaks)
+        if: always()
+        run: |
+          mkdir -p target/devsecops-reports
+          docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:v8.25.0 \
+            git --source=/repo --redact --report-format=json \
+            --report-path=/repo/target/devsecops-reports/gitleaks.json
+
+      - name: Run custom SAST rules (Semgrep)
+        if: always()
+        run: |
+          docker run --rm -v "$PWD:/src:ro" -v "$PWD/target/devsecops-reports:/reports" \
+            semgrep/semgrep:1.100.0 semgrep scan \
+            --config /src/security/semgrep-rules.yml --severity ERROR --error \
+            --json --output /reports/semgrep.json /src
+
+      - name: Scan dependencies (Trivy SCA)
+        if: always()
+        run: |
+          mkdir -p target/devsecops-reports
+          docker run --rm -v "$PWD:/work" -w /work aquasec/trivy:0.58.2 \
+            fs --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed \
+            --format json --output target/devsecops-reports/trivy-sca.json .
+          docker run --rm -v "$PWD:/work" -w /work aquasec/trivy:0.58.2 \
+            fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 .
+
+      - name: Scan infrastructure configuration (Trivy IaC)
+        if: always()
+        run: |
+          docker run --rm -v "$PWD:/work" -w /work aquasec/trivy:0.58.2 \
+            config --severity HIGH,CRITICAL --format json \
+            --output target/devsecops-reports/trivy-iac.json .
+          docker run --rm -v "$PWD:/work" -w /work aquasec/trivy:0.58.2 \
+            config --severity CRITICAL --exit-code 1 .
+
+      - name: Build container image
+        id: container
+        if: always()
+        run: docker build --tag timesheet:${{ github.sha }} .
+
+      - name: Scan container image (Trivy)
+        if: always()
+        run: |
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$PWD/target/devsecops-reports:/reports" aquasec/trivy:0.58.2 \
+            image --severity HIGH,CRITICAL --ignore-unfixed \
+            --format json --output /reports/trivy-image.json timesheet:${{ github.sha }}
+          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy:0.58.2 image --severity CRITICAL --ignore-unfixed \
+            --exit-code 1 timesheet:${{ github.sha }}
+
+      - name: Run application for DAST
+        if: always() && steps.tests.outcome == 'success' && steps.container.outcome == 'success'
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/timesheet-devops-db?serverTimezone=UTC
+          SPRING_DATASOURCE_USERNAME: root
+          SPRING_DATASOURCE_PASSWORD: ci-only-password
+          LOGGING_FILE_NAME: /tmp/timesheet-devops.log
+        run: |
+          java -jar target/timesheet-devops-1.0.jar > target/devsecops-reports/application.log 2>&1 &
+          echo $! > /tmp/timesheet.pid
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:8082/timesheet-devops/user/retrieve-all-users; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat target/devsecops-reports/application.log
+          exit 1
+
+      - name: Run OWASP ZAP baseline DAST
+        if: always() && steps.tests.outcome == 'success' && steps.container.outcome == 'success'
+        run: |
+          docker run --rm --network host -v "$PWD/target/devsecops-reports:/zap/wrk:rw" \
+            ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+            -t http://127.0.0.1:8082/timesheet-devops/user/retrieve-all-users \
+            -r zap-report.html -J zap-report.json -I
+
+      - name: Upload security reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: devsecops-reports-${{ github.run_id }}
+          path: target/devsecops-reports/
+          if-no-files-found: warn
+          retention-days: 30
