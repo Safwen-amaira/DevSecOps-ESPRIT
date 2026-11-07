@@ -106,6 +106,8 @@ services:
   pushgateway:
     image: prom/pushgateway:v1.11.2
     ports: ["127.0.0.1:9091:9091"]
+    command: ["--persistence.file=/data/metrics"]
+    volumes: [pushgateway_data:/data]
     restart: unless-stopped
     networks: [devsecops]
   grafana:
@@ -195,6 +197,8 @@ volumes:
   prometheus_data:
   grafana_data:
   trivy_cache:
+    name: devsecops-trivy-cache
+  pushgateway_data:
   k3s_data:
   k3s_kubeconfig:
 networks:

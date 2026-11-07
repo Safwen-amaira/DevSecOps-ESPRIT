@@ -41,7 +41,7 @@ Grafana dashboard: [DevSecOps delivery overview](http://localhost:3000/d/devseco
 
 ## Developer setup
 
-Install Java 17, Maven, pre-commit, Gitleaks, Semgrep, and Trivy. Open the repository in VS Code to install recommended extensions from `.vscode/extensions.json`; IntelliJ users can install SonarQube for IDE from Marketplace. Connect the IDE plugin to `http://localhost:9000` in connected mode and bind the project to `tn.esprit.spring.services:timesheet-devops`. Keep the SonarQube user token in the IDE credential store.
+Install Java 17, Maven, pre-commit, and Docker. Open the repository in VS Code to install recommended extensions from `.vscode/extensions.json`; IntelliJ users can install SonarQube for IDE from Marketplace. Connect the IDE plugin to `http://localhost:9000` in connected mode and bind the project to `tn.esprit.spring.services:timesheet-devops`. Keep the SonarQube user token in the IDE credential store. Gitleaks, Semgrep, and Trivy run in containers from the Git hooks.
 
 Install hooks and verify the checkout:
 

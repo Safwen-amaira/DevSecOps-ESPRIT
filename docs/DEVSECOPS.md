@@ -22,14 +22,14 @@ Critical security findings, failed tests, leaked secrets, and Semgrep errors blo
 
 `.vscode/extensions.json` recommends SonarQube for IDE (formerly SonarLint), GitHub Actions, YAML, and Docker extensions. In IntelliJ, install SonarQube for IDE from Marketplace. Start Compose, configure the IDE extension's connected mode against `http://localhost:9000`, create a user token in SonarQube, and bind the project to `tn.esprit.spring.services:timesheet-devops`. The token belongs in the IDE credential store and must not be committed. This provides live feedback as developers edit; the Git hook remains the commit gate.
 
-Install Java 17, Maven, `pre-commit`, Gitleaks, Semgrep, and Trivy, then run:
+Install Java 17, Maven, `pre-commit`, and Docker with its daemon running, then run:
 
 ```sh
 ./scripts/setup-devsecops.sh
 mvn --batch-mode test
 ```
 
-The script installs the Git hooks and runs them over all tracked files. Git commits made through the IDE invoke the same hooks when that IDE uses this repository's Git executable. Gitleaks scans staged changes, Semgrep checks changed Java files, Trivy checks changed Docker/Kubernetes configuration, and hygiene checks catch common file errors. Fix findings before retrying the commit. `security/checkstyle-security.xml` is an optional IntelliJ CheckStyle-IDEA profile.
+The script installs the Git hooks and runs the configured checks in all-files mode. Gitleaks remains scoped to staged changes. Git commits made through the IDE invoke the same hooks when that IDE uses this repository's Git executable. Gitleaks, Semgrep, and Trivy run from pinned Docker images; no scanner binaries need to be installed on the host. Semgrep checks Java security rules, Trivy checks critical dependency and IaC findings, and hygiene checks catch common file errors. The first Trivy run downloads its vulnerability database; later runs use a persistent Docker volume. Fix findings before retrying the commit. `security/checkstyle-security.xml` is an optional IntelliJ CheckStyle-IDEA profile.
 
 ## One-command local stack
 
