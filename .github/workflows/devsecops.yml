@@ -68,9 +68,9 @@ jobs:
           mkdir -p target/devsecops-reports "$RUNNER_TEMP/trivy-cache"
           docker run --rm -v "$PWD:/work" -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" -w /work aquasec/trivy:0.76.2 \
             fs --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed \
-            --format json --output target/devsecops-reports/trivy-sca.json .
+            --format json --output target/devsecops-reports/trivy-sca.json target/timesheet-devops-1.0.jar
           docker run --rm -v "$PWD:/work" -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" -w /work aquasec/trivy:0.76.2 \
-            fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 .
+            fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 target/timesheet-devops-1.0.jar
 
       - name: Scan infrastructure configuration (Trivy IaC)
         if: always()

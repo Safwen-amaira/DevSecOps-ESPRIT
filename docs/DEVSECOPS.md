@@ -10,7 +10,7 @@ The Jenkins stages require provisioned Jenkins plugins, credentials, Docker, Kub
 
 `.github/workflows/devsecops.yml` now runs on pushes and pull requests and can be launched manually. It runs Maven tests, the Gitleaks GitHub Action over full Git history, custom Semgrep rules, Trivy dependency and image scans, an image build, and OWASP ZAP against a running test application. Scan JSON/HTML/log outputs are uploaded as a 30-day GitHub Actions artifact, including when a gate fails; Gitleaks also publishes its own report artifact/summary.
 
-Blocking gates are failed tests, detected secrets, Semgrep ERROR findings, and unfixed CRITICAL dependency or image vulnerabilities. HIGH Trivy findings and ZAP informational/warning findings are reported for triage. Update the critical threshold only through a reviewed change with a documented risk rationale.
+Blocking gates are failed tests, detected secrets, Semgrep ERROR findings, and unfixed CRITICAL dependency or image vulnerabilities. Trivy SCA scans the packaged application JAR so the gate covers the dependencies actually shipped by Maven; the separate image scan also checks the container OS. HIGH Trivy findings and ZAP informational/warning findings are reported for triage. Update the critical threshold only through a reviewed change with a documented risk rationale.
 
 ## Local developer setup
 
