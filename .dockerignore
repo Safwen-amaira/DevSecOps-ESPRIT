@@ -1,0 +1,11 @@
+.git
+.idea
+.vscode
+.env
+.env.*
+!.env.example
+target
+reports
+screenshots
+minikube-linux-amd64
+*.log

@@ -35,9 +35,26 @@ services:
     restart: unless-stopped
     networks: [devsecops]
   jenkins:
-    image: jenkins/jenkins:lts-jdk17
+    build: ./jenkins
+    image: devsecops-jenkins:local
     ports: ["127.0.0.1:8080:8080", "127.0.0.1:50000:50000"]
-    volumes: [jenkins_home:/var/jenkins_home]
+    environment:
+      CASC_JENKINS_CONFIG: /var/jenkins_config/casc.yaml
+      JENKINS_ADMIN_ID: ${JENKINS_ADMIN_ID:-safwen}
+      JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD:-local-only-jenkins-password}
+      DB_PASSWORD: ${DB_PASSWORD:-local-only-timesheet-password}
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
+      KUBECONFIG: /kubeconfig/config
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - ./jenkins/casc.yaml:/var/jenkins_config/casc.yaml:ro
+      - ./jenkins/init.groovy.d:/usr/share/jenkins/ref/init.groovy.d:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - k3s_kubeconfig:/kubeconfig:ro
+      - ./reports:/var/jenkins_home/workspace/DevSecOps-ESPRIT/reports
+    group_add: ["${DOCKER_GID:-999}"]
+    depends_on:
+      kubeconfig-init: {condition: service_completed_successfully}
     restart: unless-stopped
     networks: [devsecops]
   sonar-db:
@@ -86,6 +103,11 @@ services:
     command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus", "--web.enable-lifecycle"]
     restart: unless-stopped
     networks: [devsecops]
+  pushgateway:
+    image: prom/pushgateway:v1.11.2
+    ports: ["127.0.0.1:9091:9091"]
+    restart: unless-stopped
+    networks: [devsecops]
   grafana:
     image: grafana/grafana:11.3.0
     depends_on: [prometheus]
@@ -98,6 +120,7 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
       - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
     restart: unless-stopped
     networks: [devsecops]
   secrets-scan:
@@ -141,6 +164,26 @@ services:
       timesheet-app: {condition: service_healthy}
     restart: "no"
     networks: [devsecops]
+  k3s:
+    image: rancher/k3s:v1.34.1-k3s1
+    command: ["server", "--disable", "traefik", "--write-kubeconfig", "/shared/config", "--write-kubeconfig-mode", "644", "--tls-san", "k3s"]
+    privileged: true
+    environment:
+      K3S_KUBECONFIG_OUTPUT: /shared/config
+    volumes:
+      - k3s_data:/var/lib/rancher/k3s
+      - k3s_kubeconfig:/shared
+    ports: ["127.0.0.1:6443:6443"]
+    restart: unless-stopped
+    networks: [devsecops]
+  kubeconfig-init:
+    image: alpine:3.22
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["until wget -q -O /dev/null --no-check-certificate https://k3s:6443/healthz; do sleep 2; done; until [ -s /shared/config ]; do sleep 1; done; sed -i 's#https://127.0.0.1:6443#https://k3s:6443#g' /shared/config"]
+    volumes: [k3s_kubeconfig:/shared]
+    depends_on: [k3s]
+    restart: "no"
+    networks: [devsecops]
 volumes:
   timesheetvol:
   jenkins_home:
@@ -152,6 +195,8 @@ volumes:
   prometheus_data:
   grafana_data:
   trivy_cache:
+  k3s_data:
+  k3s_kubeconfig:
 networks:
   devsecops:
     name: devsecops

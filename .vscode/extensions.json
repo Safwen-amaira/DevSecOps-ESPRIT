@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "SonarSource.sonarlint-vscode",
+    "GitHub.vscode-github-actions",
+    "redhat.vscode-yaml",
+    "ms-azuretools.vscode-docker"
+  ]
+}

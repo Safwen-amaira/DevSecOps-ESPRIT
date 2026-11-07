@@ -2,10 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: timesheet-dep
-  namespace: chap4
+  namespace: timesheet
 
 spec:
-  replicas: 2
+  replicas: 1
 
   selector:
     matchLabels:
@@ -15,30 +15,32 @@ spec:
     metadata:
       labels:
         app: timesheet
-      annotations:
-        vault.hashicorp.com/agent-inject: "true"
-        vault.hashicorp.com/role: "timesheet"
-        vault.hashicorp.com/agent-inject-secret-application-vault.properties: "secret/data/timesheet"
-        vault.hashicorp.com/agent-inject-template-application-vault.properties: |
-          {{- with secret "secret/data/timesheet" -}}
-          spring.datasource.username={{ .Data.data.db_username }}
-          spring.datasource.password={{ .Data.data.db_password }}
-          {{- end }}
-
     spec:
-      serviceAccountName: timesheet-vault
-
       containers:
         - name: timesheet
-          image: amairasafwen/timesheet:latest
+          image: timesheet:bootstrap
+          imagePullPolicy: Never
 
           ports:
             - containerPort: 8082
 
           env:
-            - name: SPRING_CONFIG_IMPORT
-              value: "optional:file:/vault/secrets/application-vault.properties"
-
-          envFrom:
-            - configMapRef:
-                name: timesheet-config
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-serv:3306/timesheet-devops-db?useUnicode=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: timesheet-db
+                  key: password
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              value: health,prometheus
+          readinessProbe:
+            httpGet: {path: /timesheet-devops/actuator/health, port: 8082}
+            initialDelaySeconds: 45
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /timesheet-devops/actuator/health, port: 8082}
+            initialDelaySeconds: 60
+            periodSeconds: 10

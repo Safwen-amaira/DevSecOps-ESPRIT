@@ -1,0 +1,16 @@
+{
+  "id": null,
+  "uid": "devsecops-overview",
+  "title": "DevSecOps delivery overview",
+  "tags": ["devsecops", "jenkins", "kubernetes"],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "panels": [
+    {"id":1,"type":"stat","title":"Latest Jenkins pipeline result (1=passed)","gridPos":{"x":0,"y":0,"w":8,"h":5},"datasource":{"type":"prometheus","uid":"prometheus"},"targets":[{"expr":"devsecops_jenkins_build_success","refId":"A"}],"options":{"reduceOptions":{"calcs":["lastNotNull"],"fields":"","values":false},"orientation":"auto","textMode":"auto","colorMode":"value","graphMode":"none","justifyMode":"auto"}},
+    {"id":2,"type":"timeseries","title":"Jenkins pipeline history (1=passed, 0=failed)","gridPos":{"x":8,"y":0,"w":16,"h":9},"datasource":{"type":"prometheus","uid":"prometheus"},"targets":[{"expr":"devsecops_jenkins_build_success","legendFormat":"{{commit}}","refId":"A"}]},
+    {"id":3,"type":"timeseries","title":"Application requests (Compose and Kubernetes)","gridPos":{"x":0,"y":9,"w":16,"h":9},"datasource":{"type":"prometheus","uid":"prometheus"},"targets":[{"expr":"sum(rate(http_server_requests_seconds_count[5m])) by (job,uri,status)","legendFormat":"{{job}} {{uri}} {{status}}","refId":"A"}]},
+    {"id":4,"type":"stat","title":"Scrape targets up","gridPos":{"x":16,"y":9,"w":8,"h":5},"datasource":{"type":"prometheus","uid":"prometheus"},"targets":[{"expr":"sum(up)","refId":"A"}],"options":{"reduceOptions":{"calcs":["lastNotNull"],"fields":"","values":false},"orientation":"auto","textMode":"auto","colorMode":"value","graphMode":"none","justifyMode":"auto"}}
+  ]
+}

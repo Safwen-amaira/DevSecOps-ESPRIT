@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: timesheet-serv
-  namespace: chap4
+  namespace: timesheet
 spec:
   selector:
     app: timesheet
@@ -10,4 +10,5 @@ spec:
     - protocol: TCP
       port: 80         # External port
       targetPort: 8082 # Internal app port
+      nodePort: 30082
   type: NodePort

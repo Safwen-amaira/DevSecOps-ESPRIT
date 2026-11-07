@@ -20,3 +20,12 @@ scrape_configs:
     static_configs:
       - targets: ['timesheet-app:8082']
 
+  - job_name: 'jenkins-pipeline'
+    honor_labels: true
+    static_configs:
+      - targets: ['pushgateway:9091']
+
+  - job_name: 'timesheet-kubernetes'
+    metrics_path: /timesheet-devops/actuator/prometheus
+    static_configs:
+      - targets: ['k3s:30082']

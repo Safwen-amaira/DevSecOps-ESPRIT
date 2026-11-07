@@ -20,6 +20,7 @@ repos:
         name: "[Hygiene] Fix end of file"
       - id: check-yaml
         name: "[Hygiene] Validate YAML syntax"
+        args: ['--allow-multiple-documents']
       - id: check-xml
         name: "[Hygiene] Validate XML syntax"
       - id: check-json
@@ -56,3 +57,16 @@ repos:
         entry: semgrep scan --config=security/semgrep-rules.yml --error --severity=ERROR
         language: system
         types: [java]
+      - id: trivy-iac-security
+        name: "[IaC] Trivy — block critical infrastructure findings"
+        entry: trivy config --severity CRITICAL --exit-code 1
+        language: system
+        files: '(^docker-compose\.yml$|^kubernetes/|^Dockerfile$)'
+        args: ['.']
+        pass_filenames: false
+      - id: trivy-dependency-security
+        name: "[SCA] Trivy — block critical dependency findings"
+        entry: trivy fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 pom.xml
+        language: system
+        files: '^pom\.xml$'
+        pass_filenames: false
