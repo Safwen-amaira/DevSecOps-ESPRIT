@@ -17,6 +17,7 @@ services:
   timesheet-app:
     build: .
     image: timesheet-devsecops:local
+    pull_policy: build
     ports: ["127.0.0.1:8082:8082"]
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-timesheet:3306/${DB_NAME:-timesheet-devops-db}?useUnicode=true&serverTimezone=UTC
@@ -37,6 +38,7 @@ services:
   jenkins:
     build: ./jenkins
     image: devsecops-jenkins:local
+    pull_policy: build
     ports: ["127.0.0.1:8080:8080", "127.0.0.1:50000:50000"]
     environment:
       CASC_JENKINS_CONFIG: /var/jenkins_config/casc.yaml

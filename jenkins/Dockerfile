@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts-jdk17
+FROM jenkins/jenkins:lts-jdk21
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends docker.io curl jq git maven python3 python3-pip ca-certificates \
  && pip3 install --break-system-packages --no-cache-dir semgrep==1.100.0 \
