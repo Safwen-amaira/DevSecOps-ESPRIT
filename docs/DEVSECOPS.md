@@ -8,7 +8,7 @@ The Jenkins stages require provisioned Jenkins plugins, credentials, Docker, Kub
 
 ## To-be automation
 
-`.github/workflows/devsecops.yml` now runs on pushes and pull requests targeting `master` or `main`, and can be launched manually. It runs Maven tests, Gitleaks over Git history, custom Semgrep rules, Trivy dependency and image scans, an image build, and OWASP ZAP against a running test application. JSON/HTML/log outputs are uploaded as a 30-day GitHub Actions artifact, including when a gate fails.
+`.github/workflows/devsecops.yml` now runs on pushes and pull requests and can be launched manually. It runs Maven tests, the Gitleaks GitHub Action over full Git history, custom Semgrep rules, Trivy dependency and image scans, an image build, and OWASP ZAP against a running test application. Scan JSON/HTML/log outputs are uploaded as a 30-day GitHub Actions artifact, including when a gate fails; Gitleaks also publishes its own report artifact/summary.
 
 Blocking gates are failed tests, detected secrets, Semgrep ERROR findings, and unfixed CRITICAL dependency or image vulnerabilities. HIGH Trivy findings and ZAP informational/warning findings are reported for triage. Update the critical threshold only through a reviewed change with a documented risk rationale.
 
@@ -34,7 +34,7 @@ Emergency bypasses must be approved by the repository maintainers, logged in the
 
 GitHub Actions reports are attached to each run as `devsecops-reports-<run id>`. Jenkins additionally archives its reports and publishes its HTML summary. The committed screenshots under `screenshots/` and `reports/` are illustrative snapshots, not proof that a current build passed. Record fresh run links and attach fresh scan exports when preparing the final project report and presentation.
 
-The GitHub workflow gates CRITICAL findings for dependencies, IaC, and images. In the current Jenkinsfile, dependency and IaC scans are non-blocking, and the image scan uses `TRIVY_EXIT_CODE=0`, so it is report-only. Align Jenkins' SCA/IaC/image thresholds with the intended policy and confirm the Jenkins parameter and webhook configuration in the deployment environment before claiming those controls are blocking and push-triggered.
+The GitHub workflow gates CRITICAL findings for dependencies, IaC, and images. The application uses Spring Boot 4.1.2 on Java 17 so its Spring Framework and Tomcat dependencies are on patched supported lines; the image and dependency gates are intended to catch regressions. In the current Jenkinsfile, dependency and IaC scans are non-blocking, and the image scan uses `TRIVY_EXIT_CODE=0`, so it is report-only. Align Jenkins' SCA/IaC/image thresholds with the intended policy and confirm the Jenkins parameter and webhook configuration in the deployment environment before claiming those controls are blocking and push-triggered.
 
 ## One-command local stack
 

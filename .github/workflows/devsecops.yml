@@ -31,12 +31,12 @@ jobs:
           --health-retries=10
     steps:
       - name: Checkout full history for secret scanning
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Set up Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           distribution: temurin
           java-version: '17'
@@ -48,11 +48,11 @@ jobs:
 
       - name: Scan Git history for secrets (Gitleaks)
         if: always()
-        run: |
-          mkdir -p target/devsecops-reports
-          docker run --rm -v "$PWD:/repo" ghcr.io/gitleaks/gitleaks:v8.25.0 \
-            git --source=/repo --redact --report-format=json \
-            --report-path=/repo/target/devsecops-reports/gitleaks.json
+        uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_COMMENTS: "false"
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: "true"
 
       - name: Run custom SAST rules (Semgrep)
         if: always()
@@ -65,20 +65,20 @@ jobs:
       - name: Scan dependencies (Trivy SCA)
         if: always()
         run: |
-          mkdir -p target/devsecops-reports
-          docker run --rm -v "$PWD:/work" -w /work aquasec/trivy:0.58.2 \
+          mkdir -p target/devsecops-reports "$RUNNER_TEMP/trivy-cache"
+          docker run --rm -v "$PWD:/work" -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" -w /work aquasec/trivy:0.76.2 \
             fs --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed \
             --format json --output target/devsecops-reports/trivy-sca.json .
-          docker run --rm -v "$PWD:/work" -w /work aquasec/trivy:0.58.2 \
+          docker run --rm -v "$PWD:/work" -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" -w /work aquasec/trivy:0.76.2 \
             fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 .
 
       - name: Scan infrastructure configuration (Trivy IaC)
         if: always()
         run: |
-          docker run --rm -v "$PWD:/work" -w /work aquasec/trivy:0.58.2 \
+          docker run --rm -v "$PWD:/work" -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" -w /work aquasec/trivy:0.76.2 \
             config --severity HIGH,CRITICAL --format json \
             --output target/devsecops-reports/trivy-iac.json .
-          docker run --rm -v "$PWD:/work" -w /work aquasec/trivy:0.58.2 \
+          docker run --rm -v "$PWD:/work" -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" -w /work aquasec/trivy:0.76.2 \
             config --severity CRITICAL --exit-code 1 .
 
       - name: Build container image
@@ -90,11 +90,11 @@ jobs:
         if: always()
         run: |
           docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-            -v "$PWD/target/devsecops-reports:/reports" aquasec/trivy:0.58.2 \
+            -v "$PWD/target/devsecops-reports:/reports" -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" aquasec/trivy:0.76.2 \
             image --severity HIGH,CRITICAL --ignore-unfixed \
             --format json --output /reports/trivy-image.json timesheet:${{ github.sha }}
           docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-            aquasec/trivy:0.58.2 image --severity CRITICAL --ignore-unfixed \
+            -v "$RUNNER_TEMP/trivy-cache:/root/.cache/trivy" aquasec/trivy:0.76.2 image --severity CRITICAL --ignore-unfixed \
             --exit-code 1 timesheet:${{ github.sha }}
 
       - name: Run application for DAST
@@ -126,7 +126,7 @@ jobs:
 
       - name: Upload security reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: devsecops-reports-${{ github.run_id }}
           path: target/devsecops-reports/
