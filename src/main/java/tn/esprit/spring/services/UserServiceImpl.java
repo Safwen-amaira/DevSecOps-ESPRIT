@@ -21,7 +21,7 @@ public class UserServiceImpl implements IUserService {
 	private static final Logger l = LogManager.getLogger(UserServiceImpl.class);
 
 	@Override
-	public List<User> retrieveAllUsers() { 
+	public List<User> retrieveAllUsers() {
 
 		return userRepository.findAll();
 	}
@@ -30,46 +30,46 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User addUser(User u) {
 
-		User utilisateur = null; 
+		User utilisateur = null;
 
 		try {
-			// TODO Log à ajouter en début de la méthode 
-			utilisateur = userRepository.save(u); 
-			// TODO Log à ajouter à la fin de la méthode 
+			// TODO Log à ajouter en début de la méthode
+			utilisateur = userRepository.save(u);
+			// TODO Log à ajouter à la fin de la méthode
 
 		} catch (Exception e) {
 			// TODO log ici : l....("error in addUser() : " + e);
 		}
 
-		return utilisateur; 
+		return utilisateur;
 	}
 
-	@Override 
+	@Override
 	public User updateUser(User u) {
 
-		User userUpdated = null; 
-		User u_saved = null; 
+		User userUpdated = null;
+		User u_saved = null;
 
-		
+
 		try {
-			// TODO Log à ajouter en début de la méthode 
-			userUpdated = userRepository.save(u); 
-			// TODO Log à ajouter à la fin de la méthode 
+			// TODO Log à ajouter en début de la méthode
+			userUpdated = userRepository.save(u);
+			// TODO Log à ajouter à la fin de la méthode
 
 		} catch (Exception e) {
 			// TODO log ici : l....("error in updateUser() : " + e);
 		}
 
-		return userUpdated; 
+		return userUpdated;
 	}
 
 	@Override
 	public void deleteUser(String id) {
 
 		try {
-			// TODO Log à ajouter en début de la méthode 
-			userRepository.deleteById(Long.parseLong(id)); 
-			// TODO Log à ajouter à la fin de la méthode 
+			// TODO Log à ajouter en début de la méthode
+			userRepository.deleteById(Long.parseLong(id));
+			// TODO Log à ajouter à la fin de la méthode
 
 		} catch (Exception e) {
 			// TODO log ici : l....("error in deleteUser() : " + e);
@@ -89,7 +89,7 @@ public class UserServiceImpl implements IUserService {
 		return u;
 	}
 
-	
-	
-	
+
+
+
 }

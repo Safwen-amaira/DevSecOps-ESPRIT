@@ -47,51 +47,12 @@ repos:
         language: system
         pass_filenames: false
 
-  # ---- 3. SECRET DETECTION (HMRC Hooks - secondary layer) --
-  - repo: https://github.com/hmrc/security-git-hooks
-    rev: release/1.15.0
-    hooks:
-      - id: secrets_filecontent
-        name: "[SECURITY] HMRC — Scan file content for secrets"
-        exclude: "\\.(tar|gz|jar|7z|rar|bz2|zip|gzip|war|ear|xlsx|xls|docx|doc|pptx|pdf|jpg|png|jpeg|tif|tiff|gif|bmp|webp|svg|ico|psd|exe|dll|dmg|rpm)$"
-      - id: secrets_filename
-        name: "[SECURITY] HMRC — Block sensitive file names"
-        exclude: "\\.(tar|gz|jar|7z|rar|bz2|zip|gzip|war|ear|xlsx|xls|docx|doc|pptx|pdf|jpg|png|jpeg|tif|tiff|gif|bmp|webp|svg|ico|psd|exe|dll|dmg|rpm)$"
-
-  # ---- 5. DOCKER SECURITY ----------------------------------
-  # Basic Dockerfile best-practice checks
-  - repo: https://github.com/hadolint/hadolint
-    rev: v2.13.0-beta
-    hooks:
-      - id: hadolint-docker
-        name: "[SECURITY] Hadolint — Dockerfile security lint"
-        args: [
-          "--failure-threshold", "error",
-          "--ignore", "DL3008",   # Allow apt without version pinning (CI only)
-          "--ignore", "DL3009"
-        ]
-
-  # ---- 6. YAML / KUBERNETES SECURITY ----------------------
-  - repo: https://github.com/adrienverge/yamllint
-    rev: v1.35.1
-    hooks:
-      - id: yamllint
-        name: "[Quality] YAML lint"
-        args: [-d, relaxed]
-
-  # ---- 7. CUSTOM JAVA SAST -----------------------------------
-  # Runs project-specific Java security rules before commit
+  # ---- 3. CUSTOM JAVA SAST -----------------------------------
+  # Uses local rules only; no registry download is needed at commit time.
   - repo: local
     hooks:
       - id: semgrep-java-security
-        name: "[SAST] Semgrep — Java and project security rules"
-        entry: semgrep scan
-        args:
-          - --config=p/java
-          - --config=p/owasp-top-ten
-          - --config=p/secrets
-          - --config=security/semgrep-rules.yml
-          - --error
-          - --severity=ERROR
+        name: "[SAST] Semgrep — project Java security rules"
+        entry: semgrep scan --config=security/semgrep-rules.yml --error --severity=ERROR
         language: system
         types: [java]

@@ -1,0 +1,156 @@
+# Local demo stack. Published ports bind only to loopback.
+# Start app, tooling, and one-shot scans with: docker compose up --build
+services:
+  mysql-timesheet:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-local-only-timesheet-password}
+      MYSQL_DATABASE: ${DB_NAME:-timesheet-devops-db}
+    ports: ["127.0.0.1:3306:3306"]
+    volumes: [timesheetvol:/var/lib/mysql]
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -p$${MYSQL_ROOT_PASSWORD} --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    networks: [devsecops]
+  timesheet-app:
+    build: .
+    image: timesheet-devsecops:local
+    ports: ["127.0.0.1:8082:8082"]
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-timesheet:3306/${DB_NAME:-timesheet-devops-db}?useUnicode=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-local-only-timesheet-password}
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: health,prometheus
+      MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS: never
+    depends_on:
+      mysql-timesheet: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8082/timesheet-devops/actuator/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+      start_period: 90s
+    restart: unless-stopped
+    networks: [devsecops]
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    ports: ["127.0.0.1:8080:8080", "127.0.0.1:50000:50000"]
+    volumes: [jenkins_home:/var/jenkins_home]
+    restart: unless-stopped
+    networks: [devsecops]
+  sonar-db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: ${SONAR_DB_PASSWORD:-local-only-sonar-password}
+      POSTGRES_DB: sonarqube
+    volumes: [sonar_db_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sonar -d sonarqube"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+    networks: [devsecops]
+  sonarqube:
+    image: sonarqube:community
+    depends_on:
+      sonar-db: {condition: service_healthy}
+    ports: ["127.0.0.1:9000:9000"]
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://sonar-db:5432/sonarqube
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: ${SONAR_DB_PASSWORD:-local-only-sonar-password}
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    ulimits:
+      nofile: {soft: 65536, hard: 65536}
+    restart: unless-stopped
+    networks: [devsecops]
+  nexus:
+    image: sonatype/nexus3:3.77.0
+    ports: ["127.0.0.1:8081:8081"]
+    volumes: [nexus_data:/nexus-data]
+    restart: unless-stopped
+    networks: [devsecops]
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    ports: ["127.0.0.1:9090:9090"]
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command: ["--config.file=/etc/prometheus/prometheus.yml", "--storage.tsdb.path=/prometheus", "--web.enable-lifecycle"]
+    restart: unless-stopped
+    networks: [devsecops]
+  grafana:
+    image: grafana/grafana:11.3.0
+    depends_on: [prometheus]
+    ports: ["127.0.0.1:3000:3000"]
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-local-only-grafana-password}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    restart: unless-stopped
+    networks: [devsecops]
+  secrets-scan:
+    image: ghcr.io/gitleaks/gitleaks:v8.25.0
+    command: ["git", "--redact", "--no-banner", "--report-format", "json", "--report-path", "/reports/gitleaks.json", "/src"]
+    volumes: [".:/src:ro", "./reports:/reports"]
+    restart: "no"
+    networks: [devsecops]
+  sast-scan:
+    image: semgrep/semgrep:1.100.0
+    command: ["scan", "--config", "/src/security/semgrep-rules.yml", "--severity", "ERROR", "--error", "--json", "--output", "/reports/semgrep.json", "/src"]
+    volumes: [".:/src:ro", "./reports:/reports"]
+    restart: "no"
+    networks: [devsecops]
+  dependency-scan:
+    image: aquasec/trivy:0.58.2
+    command: ["fs", "--scanners", "vuln", "--severity", "CRITICAL,HIGH", "--ignore-unfixed", "--exit-code", "1", "--format", "json", "--output", "/reports/trivy-fs.json", "/src"]
+    volumes: [".:/src:ro", "./reports:/reports", "trivy_cache:/root/.cache/"]
+    restart: "no"
+    networks: [devsecops]
+  iac-scan:
+    image: aquasec/trivy:0.58.2
+    command: ["config", "--severity", "CRITICAL,HIGH", "--exit-code", "1", "--format", "json", "--output", "/reports/trivy-iac.json", "/src"]
+    volumes: [".:/src:ro", "./reports:/reports", "trivy_cache:/root/.cache/"]
+    restart: "no"
+    networks: [devsecops]
+  docker-image-scan:
+    image: aquasec/trivy:0.58.2
+    command: ["image", "--severity", "CRITICAL,HIGH", "--ignore-unfixed", "--exit-code", "1", "--format", "json", "--output", "/reports/trivy-image.json", "timesheet-devsecops:local"]
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock", "./reports:/reports", "trivy_cache:/root/.cache/"]
+    depends_on: [timesheet-app]
+    restart: "no"
+    networks: [devsecops]
+  dast-scan:
+    image: ghcr.io/zaproxy/zaproxy:stable
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["zap-baseline.py -t http://timesheet-app:8082/timesheet-devops/ -m 2 -I -J /reports/zap.json -r /reports/zap.html"]
+    volumes: ["./reports:/reports"]
+    depends_on:
+      timesheet-app: {condition: service_healthy}
+    restart: "no"
+    networks: [devsecops]
+volumes:
+  timesheetvol:
+  jenkins_home:
+  sonar_db_data:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  nexus_data:
+  prometheus_data:
+  grafana_data:
+  trivy_cache:
+networks:
+  devsecops:
+    name: devsecops

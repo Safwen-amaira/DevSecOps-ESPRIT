@@ -8,6 +8,16 @@ The project integrates security across five DevSecOps phases:
 PRE-COMMIT → COMMIT → ACCEPTANCE → PRODUCTION → OPERATIONS
 ```
 
+## Start the complete local stack
+
+With Docker Engine and Compose installed, run from the repository root:
+
+```sh
+docker compose up --build
+```
+
+This starts the app, Jenkins, SonarQube, Nexus, Prometheus, Grafana and MySQL, then runs the configured secret, SAST, dependency, IaC, image, and DAST scans. App: `http://localhost:8082/timesheet-devops/`; Jenkins: `http://localhost:8080`; SonarQube: `http://localhost:9000`; Nexus: `http://localhost:8081`; Prometheus: `http://localhost:9090`; Grafana: `http://localhost:3000` (admin / `local-only-grafana-password`). Reports are written to `reports/`. See [the local stack guide](docs/DEVSECOPS.md#one-command-local-stack) for first-run setup, memory requirements, local-only credentials, and Jenkins pipeline prerequisites.
+
 Jenkins orchestrates the pipeline, while specialized security controls perform secret detection, automated testing, static analysis, dependency assessment, Infrastructure as Code scanning, container scanning, dynamic application testing, Kubernetes security validation, runtime secret injection, threat detection, continuous scanning, and monitoring.
 
 ---

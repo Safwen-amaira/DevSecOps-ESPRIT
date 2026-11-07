@@ -7,7 +7,6 @@ target/
 .mvn/
 *.jar
 *.class
-docker-compose.yml
 start-vault.sh
 zap_report.html
 .idea/

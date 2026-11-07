@@ -14,7 +14,7 @@ Blocking gates are failed tests, detected secrets, Semgrep ERROR findings, and u
 
 ## Local developer setup
 
-Install Java 17, Maven, Docker, Hadolint, pre-commit, Semgrep, and Gitleaks (all tools available on `PATH`). From the repository root:
+Install Java 17, Maven, pre-commit, Semgrep, and Gitleaks (available on `PATH`). The local hooks use the committed Semgrep rules and do not need Docker or a remote rule registry. From the repository root:
 
 ```sh
 pre-commit install
@@ -36,14 +36,16 @@ GitHub Actions reports are attached to each run as `devsecops-reports-<run id>`.
 
 The GitHub workflow gates CRITICAL findings for dependencies, IaC, and images. In the current Jenkinsfile, dependency and IaC scans are non-blocking, and the image scan uses `TRIVY_EXIT_CODE=0`, so it is report-only. Align Jenkins' SCA/IaC/image thresholds with the intended policy and confirm the Jenkins parameter and webhook configuration in the deployment environment before claiming those controls are blocking and push-triggered.
 
-## Local reporting infrastructure
+## One-command local stack
 
-The optional Jenkins, SonarQube, Nexus, Prometheus, and Grafana stack is defined in `docker-compose.infra.yml`. It binds web ports to localhost and requires credentials from an ignored `.env` file:
+The tracked root `docker-compose.yml` is the single Compose entry point. It starts the MySQL-backed application, Jenkins, SonarQube/PostgreSQL, Nexus, Prometheus, and Grafana. It also runs one-shot Gitleaks, Semgrep, Trivy dependency/IaC/image, and OWASP ZAP scan containers. Scanner output is written under `reports/`.
 
 ```sh
-cp .env.example .env
-# Replace the sample passwords with local random values.
-docker compose --env-file .env -f docker-compose.infra.yml up -d
+docker compose up --build
 ```
 
-Jenkins still receives access to the host Docker socket so it can build images. Treat this as a trusted local lab only; a Jenkins administrator with that socket can control the Docker host. Do not expose this stack to an untrusted network or reuse its local credentials elsewhere.
+Web UIs: app `http://localhost:8082/timesheet-devops/`, Jenkins `http://localhost:8080`, SonarQube `http://localhost:9000`, Nexus `http://localhost:8081`, Prometheus `http://localhost:9090`, and Grafana `http://localhost:3000` (admin / `local-only-grafana-password`). Jenkins and SonarQube show their first-run setup; initialize them in the UI. Jenkins job creation, GitHub webhook configuration, and Sonar project token creation are still administrator setup steps. The `pipeline/Jenkinsfile` documents the full deployment pipeline and expects a configured Jenkins with its plugins, credentials, Docker, Kubernetes, Vault and runtime-security tools; Compose provides the local app and analysis services, not a Kubernetes production cluster or those credentials.
+
+The Compose stack binds published ports to `127.0.0.1`. Default passwords are local demo values and must be overridden via `.env` before any network exposure. Set Docker's memory to at least 8 GB for the complete Jenkins/SonarQube/Nexus stack; SonarQube may require host `vm.max_map_count` of at least 524288. Use `docker compose down` to stop services and `docker compose down -v` only when intentionally deleting persistent service data.
+
+On a fresh host, scan reports are created in `reports/`; a failed high/critical gate exits its scanner container nonzero. Review them using `docker compose ps -a` and the JSON/HTML files in that directory. Docker image scanning requires access to the host Docker socket.
