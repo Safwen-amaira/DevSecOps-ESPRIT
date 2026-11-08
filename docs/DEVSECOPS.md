@@ -31,6 +31,18 @@ mvn --batch-mode test
 
 The script installs the Git hooks and runs the configured checks in all-files mode. Gitleaks remains scoped to staged changes. Git commits made through the IDE invoke the same hooks when that IDE uses this repository's Git executable. Gitleaks, Semgrep, and Trivy run from pinned Docker images; no scanner binaries need to be installed on the host. Semgrep checks Java security rules, Trivy checks critical dependency and IaC findings, and hygiene checks catch common file errors. The first Trivy run downloads its vulnerability database; later runs use a persistent Docker volume. Fix findings before retrying the commit. `security/checkstyle-security.xml` is an optional IntelliJ CheckStyle-IDEA profile.
 
+### Troubleshoot Gitleaks failing to start
+
+On hosts with a low process/thread limit, the Go runtime inside Gitleaks may fail before scanning staged files. The observed diagnostic is:
+
+```text
+runtime: failed to create new OS thread (have 2 already; errno=11)
+runtime: may need to increase max user processes (ulimit -u)
+fatal error: newosproc
+```
+
+The hook runs Gitleaks with `GOMAXPROCS=1` and one CPU allocated to reduce its runtime thread demand. After pulling that hook update, retry the commit. If this diagnostic still appears, check host limits with `ulimit -u` and `cat /sys/fs/cgroup/pids.max`; close excess processes or increase the applicable user/container process limit, then rerun `pre-commit run gitleaks-staged --all-files` and retry the commit. This is a scanner startup/resource failure, not a clean scan result; do not disable the secret scan to get a commit through.
+
 ## One-command local stack
 
 The root `docker-compose.yml` provisions MySQL, the app, Jenkins with plugins and an automatically seeded pipeline job, SonarQube/PostgreSQL, Nexus, Prometheus, Pushgateway, Grafana, k3s, and one-shot Gitleaks/Semgrep/Trivy/ZAP scanners. Jenkins builds the app image through the Docker socket, imports it into k3s, deploys the database and app, checks readiness, then runs ZAP against the deployed service. The pipeline result is sent to Pushgateway; Prometheus stores its time series and Grafana loads the dashboard from versioned JSON.
