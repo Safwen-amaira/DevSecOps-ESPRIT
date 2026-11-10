@@ -18,3 +18,4 @@ monitoring/grafana/banking_cves.db
 # Local scanner outputs; CI reports are retained as build artifacts.
 reports/gitleaks-report.json
 reports/semgrep-report.json
+reports/*
