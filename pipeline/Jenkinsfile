@@ -50,7 +50,7 @@ pipeline {
           gitleaks git --redact --no-banner .
           semgrep scan --config security/semgrep-rules.yml --severity ERROR --error --json --output reports/semgrep-jenkins.json .
           mvn --batch-mode --no-transfer-progress package
-          trivy fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 target/timesheet-devops-1.0.jar
+          trivy fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 --format json --output reports/trivy-dependencies.json .
           trivy config --severity CRITICAL --exit-code 1 .
           docker build --tag "$IMAGE" .
           trivy image --severity CRITICAL --ignore-unfixed --exit-code 1 "$IMAGE"
