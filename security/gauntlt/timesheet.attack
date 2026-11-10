@@ -28,6 +28,7 @@ Feature: Timesheet security regression checks
       """
     Then the output should not contain "200"
 
+
   Scenario: No stack trace in error responses
     When I launch a "curl" attack with:
       """
