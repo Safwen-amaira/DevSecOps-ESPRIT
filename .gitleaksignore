@@ -1,0 +1,4 @@
+# False positives: historical curl -u "${SONAR_TOKEN}:" calls use a Jenkins
+# credential variable at runtime; no token value is stored in these commits.
+99ebc9a4c7de4cc11a3d53e5d4818d31782cce63:pipeline/Jenkinsfile:curl-auth-user:363
+99ebc9a4c7de4cc11a3d53e5d4818d31782cce63:pipeline/Jenkinsfile:curl-auth-user:367
