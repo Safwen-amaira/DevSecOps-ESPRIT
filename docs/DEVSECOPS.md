@@ -9,6 +9,7 @@ The initial repository had a Jenkinsfile but no provisioned Jenkins job, incomin
 
 
 
+
 ```text
 IDE (SonarQube for IDE live feedback)
   → Git commit (pre-commit: Gitleaks, Semgrep, Trivy IaC, hygiene)
