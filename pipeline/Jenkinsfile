@@ -19,12 +19,26 @@ pipeline {
     stage('Require successful GitHub security workflow') {
       steps {
         script {
-          def raw = sh(script: "curl -fsS '${env.GITHUB_API}?head_sha=${env.CANDIDATE_SHA}&per_page=20'", returnStdout: true)
-          def runs = readJSON text: raw
-          def run = runs.workflow_runs.find { it.name == 'DevSecOps' && it.event == 'push' && it.head_sha == env.CANDIDATE_SHA }
-          if (!run || run.status != 'completed' || run.conclusion != 'success') {
-            currentBuild.result = 'NOT_BUILT'
-            error("GitHub DevSecOps checks have not passed for ${env.CANDIDATE_SHA}; deployment is gated.")
+          timeout(time: 15, unit: 'MINUTES') {
+            waitUntil(initialRecurrencePeriod: 15000) {
+              def raw = sh(script: "curl -fsS '${env.GITHUB_API}?head_sha=${env.CANDIDATE_SHA}&per_page=20'", returnStdout: true)
+              def runs = readJSON text: raw
+              def run = runs.workflow_runs.find { it.name == 'DevSecOps' && it.event == 'push' && it.head_sha == env.CANDIDATE_SHA }
+
+              if (!run) {
+                echo "Waiting for a GitHub Actions push run for ${env.CANDIDATE_SHA}."
+                return false
+              }
+
+              echo "GitHub Actions run ${run.html_url}: status=${run.status}, conclusion=${run.conclusion ?: 'pending'}"
+              if (run.status != 'completed') {
+                return false
+              }
+              if (run.conclusion != 'success') {
+                error("GitHub DevSecOps checks finished with '${run.conclusion}' for ${env.CANDIDATE_SHA}; deployment is gated.")
+              }
+              return true
+            }
           }
         }
       }
