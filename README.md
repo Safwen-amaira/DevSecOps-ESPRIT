@@ -19,11 +19,13 @@ Critical vulnerabilities, leaked secrets, failed tests, and Semgrep errors block
 
 ## Start the local stack
 
-Requirements: Docker Compose, at least 8 GB available memory, and a host `vm.max_map_count` of at least `524288` for SonarQube. On Linux, set `DOCKER_GID` in `.env` to `stat -c '%g' /var/run/docker.sock` so Jenkins can use the host Docker socket.
+Requirements: rootful Docker Engine with Compose, at least 8 GB available memory, and a host `vm.max_map_count` of at least `524288` for SonarQube. On Linux, set `DOCKER_GID` in `.env` to `stat -c '%g' /var/run/docker.sock` so Jenkins can use the host Docker socket. The helper below explicitly selects `/var/run/docker.sock`; this matters on systems where `docker` otherwise points to rootless Podman.
 
 ```sh
-docker compose up --build
+./scripts/compose-rootful.sh up -d --build
 ```
+
+Use the same helper for other Compose commands, for example `./scripts/compose-rootful.sh ps` and `./scripts/compose-rootful.sh logs -f jenkins`. If you previously started this project through rootless Podman, stop that copy once with `docker compose down` from this repository before starting the rootful Docker copy; the two engines have separate containers and port mappings.
 
 Jenkins creates the `DevSecOps-ESPRIT` job automatically and polls GitHub every five minutes. The local test stack binds published ports to loopback. The first run downloads images and Jenkins plugins and may take several minutes.
 
@@ -41,7 +43,7 @@ Grafana dashboard: [DevSecOps delivery overview](http://localhost:3000/d/devseco
 
 ## Developer setup
 
-Install Java 17, Maven, pre-commit, and Docker. Open the repository in VS Code to install recommended extensions from `.vscode/extensions.json`; IntelliJ users can install SonarQube for IDE from Marketplace. Connect the IDE plugin to `http://localhost:9000` in connected mode and bind the project to `tn.esprit.spring.services:timesheet-devops`. Keep the SonarQube user token in the IDE credential store. Gitleaks, Semgrep, and Trivy run in containers from the Git hooks.
+Install Java 17, Maven, pre-commit, and rootful Docker Engine. Open the repository in VS Code to install recommended extensions from `.vscode/extensions.json`; IntelliJ users can install SonarQube for IDE from Marketplace. Connect the IDE plugin to `http://localhost:9000` in connected mode and bind the project to `tn.esprit.spring.services:timesheet-devops`. Keep the SonarQube user token in the IDE credential store. Gitleaks, Semgrep, and Trivy run in containers from the Git hooks through `scripts/docker-rootful.sh`.
 
 Install hooks and verify the checkout:
 

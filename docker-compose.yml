@@ -52,7 +52,7 @@ services:
       - ./jenkins/casc.yaml:/var/jenkins_config/casc.yaml:ro
       - ./jenkins/init.groovy.d:/usr/share/jenkins/ref/init.groovy.d:ro
       - /var/run/docker.sock:/var/run/docker.sock
-      - k3s_kubeconfig:/kubeconfig:ro
+      - k3s_kubeconfig_native:/kubeconfig:ro
       - ./reports:/var/jenkins_home/workspace/DevSecOps-ESPRIT/reports
     group_add: ["${DOCKER_GID:-999}"]
     depends_on:
@@ -135,7 +135,8 @@ services:
     networks: [devsecops]
   sast-scan:
     image: semgrep/semgrep:1.100.0
-    command: ["scan", "--config", "/src/security/semgrep-rules.yml", "--severity", "ERROR", "--error", "--json", "--output", "/reports/semgrep.json", "/src"]
+    # Semgrep's image has no ENTRYPOINT, so invoke its CLI explicitly.
+    command: ["semgrep", "scan", "--config", "/src/security/semgrep-rules.yml", "--severity", "ERROR", "--error", "--json", "--output", "/reports/semgrep.json", "/src"]
     volumes: [".:/src:ro", "./reports:/reports"]
     restart: "no"
     networks: [devsecops]
@@ -170,21 +171,24 @@ services:
     networks: [devsecops]
   k3s:
     image: rancher/k3s:v1.34.1-k3s1
-    command: ["server", "--disable", "traefik", "--write-kubeconfig", "/shared/config", "--write-kubeconfig-mode", "644", "--tls-san", "k3s"]
+    # Native snapshots avoid nested overlayfs issues on hosts using Btrfs.
+    command: ["server", "--snapshotter", "native", "--disable", "traefik", "--write-kubeconfig", "/shared/config", "--write-kubeconfig-mode", "644", "--tls-san", "k3s"]
     privileged: true
     environment:
       K3S_KUBECONFIG_OUTPUT: /shared/config
     volumes:
-      - k3s_data:/var/lib/rancher/k3s
-      - k3s_kubeconfig:/shared
+      - k3s_data_native:/var/lib/rancher/k3s
+      - k3s_kubeconfig_native:/shared
     ports: ["127.0.0.1:6443:6443"]
     restart: unless-stopped
     networks: [devsecops]
   kubeconfig-init:
     image: alpine:3.22
     entrypoint: ["/bin/sh", "-c"]
-    command: ["until wget -q -O /dev/null --no-check-certificate https://k3s:6443/healthz; do sleep 2; done; until [ -s /shared/config ]; do sleep 1; done; sed -i 's#https://127.0.0.1:6443#https://k3s:6443#g' /shared/config"]
-    volumes: [k3s_kubeconfig:/shared]
+    # Kubernetes may require authentication on /healthz (HTTP 401). The K3s
+    # kubeconfig file is the reliable readiness signal needed by Jenkins here.
+    command: ["set -eu; until [ -s /shared/config ]; do sleep 1; done; sed -i 's#https://127.0.0.1:6443#https://k3s:6443#g' /shared/config"]
+    volumes: [k3s_kubeconfig_native:/shared]
     depends_on: [k3s]
     restart: "no"
     networks: [devsecops]
@@ -201,8 +205,9 @@ volumes:
   trivy_cache:
     name: devsecops-trivy-cache
   pushgateway_data:
-  k3s_data:
-  k3s_kubeconfig:
+  # Keep the prior cluster volume intact; native snapshotter starts cleanly.
+  k3s_data_native:
+  k3s_kubeconfig_native:
 networks:
   devsecops:
     name: devsecops

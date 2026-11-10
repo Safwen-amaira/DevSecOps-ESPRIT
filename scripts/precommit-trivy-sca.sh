@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 set -eu
 repo=$(git rev-parse --show-toplevel)
-docker run --rm -v "$repo:/src:ro" -v devsecops-trivy-cache:/root/.cache/trivy aquasec/trivy:0.76.2 \
+"$repo/scripts/docker-rootful.sh" run --rm -v "$repo:/src:ro" -v devsecops-trivy-cache:/root/.cache/trivy aquasec/trivy:0.76.2 \
   fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 /src/pom.xml

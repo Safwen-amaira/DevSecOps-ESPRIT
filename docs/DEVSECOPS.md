@@ -29,7 +29,7 @@ Install Java 17, Maven, `pre-commit`, and Docker with its daemon running, then r
 mvn --batch-mode test
 ```
 
-The script installs the Git hooks and runs the configured checks in all-files mode. Gitleaks remains scoped to staged changes. Git commits made through the IDE invoke the same hooks when that IDE uses this repository's Git executable. Gitleaks, Semgrep, and Trivy run from pinned Docker images; no scanner binaries need to be installed on the host. Semgrep checks Java security rules, Trivy checks critical dependency and IaC findings, and hygiene checks catch common file errors. The first Trivy run downloads its vulnerability database; later runs use a persistent Docker volume. Fix findings before retrying the commit. `security/checkstyle-security.xml` is an optional IntelliJ CheckStyle-IDEA profile.
+The script installs the Git hooks and runs the configured checks in all-files mode. Gitleaks remains scoped to staged changes. Git commits made through the IDE invoke the same hooks when that IDE uses this repository's Git executable. Gitleaks, Semgrep, and Trivy run from pinned Docker images through `scripts/docker-rootful.sh`, so the hooks use the same rootful Docker Engine as the stack. No scanner binaries need to be installed on the host. Semgrep checks Java security rules, Trivy checks critical dependency and IaC findings, and hygiene checks catch common file errors. The first Trivy run downloads its vulnerability database; later runs use a persistent Docker volume. Fix findings before retrying the commit. `security/checkstyle-security.xml` is an optional IntelliJ CheckStyle-IDEA profile.
 
 ### Troubleshoot Gitleaks failing to start
 
@@ -48,8 +48,10 @@ The hook runs Gitleaks with `GOMAXPROCS=1` and one CPU allocated to reduce its r
 The root `docker-compose.yml` provisions MySQL, the app, Jenkins with plugins and an automatically seeded pipeline job, SonarQube/PostgreSQL, Nexus, Prometheus, Pushgateway, Grafana, k3s, and one-shot Gitleaks/Semgrep/Trivy/ZAP scanners. Jenkins builds the app image through the Docker socket, imports it into k3s, deploys the database and app, checks readiness, then runs ZAP against the deployed service. The pipeline result is sent to Pushgateway; Prometheus stores its time series and Grafana loads the dashboard from versioned JSON.
 
 ```sh
-docker compose up --build
+./scripts/compose-rootful.sh up -d --build
 ```
+
+Use `./scripts/compose-rootful.sh` for subsequent Compose operations too. It invokes Docker Compose against `/var/run/docker.sock` through `sudo`, avoiding a rootless Podman socket when the `docker` command is Podman-compatible. If the stack was previously started under rootless Podman, run `docker compose down` once from this repository to release its ports, then start the rootful Docker stack with the helper. Docker Engine and Podman keep separate containers and volumes.
 
 On Linux, set `DOCKER_GID` in `.env` to the group id from `stat -c '%g' /var/run/docker.sock` so Jenkins can use the socket. On first startup, Jenkins plugins and container images are downloaded. Set Docker memory to at least 8 GB; SonarQube may require host `vm.max_map_count` of at least 524288.
 

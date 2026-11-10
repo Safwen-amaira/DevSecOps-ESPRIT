@@ -1,0 +1,1735 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.76.2"
+  },
+  "ReportID": "01a1c51e-5df2-78ad-b0ba-1aa3128312f1",
+  "CreatedAt": "2026-11-10T11:01:04.114572472Z",
+  "ArtifactID": "sha256:760c7a803a0178f4334c766f4fb02f4dd74bf2c1684cc61e8154238a95f3b68d",
+  "ArtifactName": "timesheet-devsecops:local",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 366550528,
+    "OS": {
+      "Family": "ubuntu",
+      "Name": "26.04"
+    },
+    "ImageID": "sha256:c8e76548749182c5853340b8f74ab4cc9d922620fdeb92808e319eabe407c414",
+    "DiffIDs": [
+      "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824",
+      "sha256:5f4be2c3badedfd7149d008a4902427c98e708c70031dc19b4264160a545df19",
+      "sha256:a1b84a0afc417900d6c5e169c76df4deff6233b684b700297be190f9bfbf17c0",
+      "sha256:2612ac3f9b707727734b54fbb37e609c70807cbc51186460f3a78c4a84ad5595",
+      "sha256:347cc08f1b05909e7240db5559e8324f049d9ff60d74ec2f1b42e978024968cc",
+      "sha256:f75073f40b100816472317910ba0efbad52c084a468a37051be6c3d1a9fcf93e",
+      "sha256:6dbaa487d7a37f3da0c6ced7856ff5078987e2c28b02cb8fcfbf12f890349f1f",
+      "sha256:10aa32e941df526263b246dbbe03fa893cb6aec32e8daa989c6287aab406c359",
+      "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+    ],
+    "RepoTags": [
+      "timesheet-devsecops:local"
+    ],
+    "Reference": "timesheet-devsecops:local",
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2026-11-10T11:16:38.962560216+01:00",
+      "history": [
+        {
+          "created": "2026-10-25T10:26:07.097258483Z",
+          "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:rockcraft-base /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/.temp_layer.9587.tar --tag 26.04"
+        },
+        {
+          "created": "2026-10-25T10:26:07.51326611Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --clear=config.entrypoint --clear=config.cmd",
+          "comment": "Set entrypoint",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-25T10:26:07.523539328Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --clear=config.cmd --config.cmd /bin/bash",
+          "comment": "Set default commands",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-25T10:26:07.533945465Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --config.env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "comment": "Set default PATH for bare-based rock",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-25T10:26:07.544106373Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --clear=config.labels --config.label org.opencontainers.image.version=26.04 --config.label org.opencontainers.image.title=ubuntu --config.label org.opencontainers.image.created=2026-10-25T10:26:07.538865+00:00 --config.label org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+          "comment": "Set labels",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-25T10:26:07.555793355Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --clear=manifest.annotations --manifest.annotation org.opencontainers.image.version=26.04 --manifest.annotation org.opencontainers.image.title=ubuntu --manifest.annotation org.opencontainers.image.created=2026-10-25T10:26:07.538865+00:00 --manifest.annotation org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+          "comment": "Set annotations",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-10-25T10:26:07.568398974Z",
+          "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/.temp_layer.control_data.9587.tar",
+          "comment": "Add rock control metadata"
+        },
+        {
+          "created": "2026-11-03T21:57:40.456522538Z",
+          "created_by": "ENV JAVA_HOME=/opt/java/openjdk",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-11-03T21:57:40.456522538Z",
+          "created_by": "ENV PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-11-03T21:57:40.456522538Z",
+          "created_by": "ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-11-03T21:57:40.456522538Z",
+          "created_by": "RUN /bin/sh -c set -eux;     apt-get update;     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl         wget         gnupg         fontconfig         ca-certificates p11-kit         tzdata         locales     ;     echo \"en_US.UTF-8 UTF-8\" \u003e\u003e /etc/locale.gen;     locale-gen en_US.UTF-8;     rm -rf /var/lib/apt/lists/* # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-11-03T21:57:40.456522538Z",
+          "created_by": "ENV JAVA_VERSION=jdk-17.0.21+9",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-11-03T21:57:43.042056455Z",
+          "created_by": "RUN /bin/sh -c set -eux;     ARCH=\"$(dpkg --print-architecture)\";     case \"${ARCH}\" in        amd64)          ESUM='9f41bf88c7900c7097444a1bdeb84146ae692bc08842490ab098063c74bf9a8a';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_x64_linux_hotspot_17.0.21_9.tar.gz';          ;;        arm64)          ESUM='1114f09d6174f54270c3117410b5e4022b43ebc0b43b751af08b927c55ed7bb5';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_aarch64_linux_hotspot_17.0.21_9.tar.gz';          ;;        armhf)          ESUM='a1f61c0a9a76af31e6954f93ba329650ce16e556d0508227a50c6203ff012357';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_arm_linux_hotspot_17.0.21_9.tar.gz';          ;;        ppc64el)          ESUM='7836a98346529939fc1149a59c7159d0ea721c2028fbfade620d60e58293d65f';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_ppc64le_linux_hotspot_17.0.21_9.tar.gz';          ;;        s390x)          ESUM='c2f8f6c55b09a5bb9c26fbdc85cad41e10860a396da447e2ce7a182480e74945';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_s390x_linux_hotspot_17.0.21_9.tar.gz';          ;;        *)          echo \"Unsupported arch: ${ARCH}\";          exit 1;          ;;     esac;     wget --progress=dot:giga -O /tmp/openjdk.tar.gz ${BINARY_URL};     wget --progress=dot:giga -O /tmp/openjdk.tar.gz.sig ${BINARY_URL}.sig;     export GNUPGHOME=\"$(mktemp -d)\";     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 3B04D753C9050D9A5D343F39843C48A565F8F04B;     gpg --batch --verify /tmp/openjdk.tar.gz.sig /tmp/openjdk.tar.gz;     rm -rf \"${GNUPGHOME}\" /tmp/openjdk.tar.gz.sig;     echo \"${ESUM} */tmp/openjdk.tar.gz\" | sha256sum -c -;     mkdir -p \"$JAVA_HOME\";     tar --extract         --file /tmp/openjdk.tar.gz         --directory \"$JAVA_HOME\"         --strip-components 1         --no-same-owner     ;     rm -f /tmp/openjdk.tar.gz;     find \"$JAVA_HOME/lib\" -name '*.so' -exec dirname '{}' ';' | sort -u \u003e /etc/ld.so.conf.d/docker-openjdk.conf;     ldconfig;     java -Xshare:dump; # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-11-03T21:57:43.142967103Z",
+          "created_by": "RUN /bin/sh -c set -eux;     echo \"Verifying install ...\";     echo \"java --version\"; java --version;     echo \"Complete.\" # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-11-03T21:57:43.166855233Z",
+          "created_by": "COPY --chmod=755 entrypoint.sh /__cacert_entrypoint.sh # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-11-03T21:57:43.166855233Z",
+          "created_by": "ENTRYPOINT [\"/__cacert_entrypoint.sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-11-10T11:14:19.82355176+01:00",
+          "created_by": "WORKDIR /app",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-11-10T11:16:38.86413087+01:00",
+          "created_by": "RUN /bin/sh -c apt-get update \u0026\u0026 apt-get install -y --no-install-recommends curl     \u0026\u0026 rm -rf /var/lib/apt/lists/* # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-11-10T11:16:38.962560216+01:00",
+          "created_by": "COPY /app/target/timesheet-devops-1.0.jar app.jar # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-11-10T11:16:38.962560216+01:00",
+          "created_by": "EXPOSE [8082/tcp]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-11-10T11:16:38.962560216+01:00",
+          "created_by": "ENTRYPOINT [\"java\" \"-jar\" \"app.jar\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824",
+          "sha256:5f4be2c3badedfd7149d008a4902427c98e708c70031dc19b4264160a545df19",
+          "sha256:a1b84a0afc417900d6c5e169c76df4deff6233b684b700297be190f9bfbf17c0",
+          "sha256:2612ac3f9b707727734b54fbb37e609c70807cbc51186460f3a78c4a84ad5595",
+          "sha256:347cc08f1b05909e7240db5559e8324f049d9ff60d74ec2f1b42e978024968cc",
+          "sha256:f75073f40b100816472317910ba0efbad52c084a468a37051be6c3d1a9fcf93e",
+          "sha256:6dbaa487d7a37f3da0c6ced7856ff5078987e2c28b02cb8fcfbf12f890349f1f",
+          "sha256:10aa32e941df526263b246dbbe03fa893cb6aec32e8daa989c6287aab406c359",
+          "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+        ]
+      },
+      "config": {
+        "Entrypoint": [
+          "java",
+          "-jar",
+          "app.jar"
+        ],
+        "Env": [
+          "PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "JAVA_HOME=/opt/java/openjdk",
+          "LANG=en_US.UTF-8",
+          "LANGUAGE=en_US:en",
+          "LC_ALL=en_US.UTF-8",
+          "JAVA_VERSION=jdk-17.0.21+9"
+        ],
+        "Labels": {
+          "com.docker.compose.project": "timesheet-project",
+          "com.docker.compose.service": "timesheet-app",
+          "com.docker.compose.version": "2.26.1",
+          "org.opencontainers.image.created": "2026-10-25T10:26:07.538865+00:00",
+          "org.opencontainers.image.description": "The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+          "org.opencontainers.image.title": "ubuntu",
+          "org.opencontainers.image.version": "26.04"
+        },
+        "WorkingDir": "/app",
+        "ExposedPorts": {
+          "8082/tcp": {}
+        }
+      }
+    },
+    "Layers": [
+      {
+        "Size": 112998400,
+        "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+      },
+      {
+        "Size": 10240,
+        "DiffID": "sha256:5f4be2c3badedfd7149d008a4902427c98e708c70031dc19b4264160a545df19"
+      },
+      {
+        "Size": 54311424,
+        "DiffID": "sha256:a1b84a0afc417900d6c5e169c76df4deff6233b684b700297be190f9bfbf17c0"
+      },
+      {
+        "Size": 142081024,
+        "DiffID": "sha256:2612ac3f9b707727734b54fbb37e609c70807cbc51186460f3a78c4a84ad5595"
+      },
+      {
+        "Size": 2560,
+        "DiffID": "sha256:347cc08f1b05909e7240db5559e8324f049d9ff60d74ec2f1b42e978024968cc"
+      },
+      {
+        "Size": 7680,
+        "DiffID": "sha256:f75073f40b100816472317910ba0efbad52c084a468a37051be6c3d1a9fcf93e"
+      },
+      {
+        "Size": 1536,
+        "DiffID": "sha256:6dbaa487d7a37f3da0c6ced7856ff5078987e2c28b02cb8fcfbf12f890349f1f"
+      },
+      {
+        "Size": 7680,
+        "DiffID": "sha256:10aa32e941df526263b246dbbe03fa893cb6aec32e8daa989c6287aab406c359"
+      },
+      {
+        "Size": 57129984,
+        "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "Java",
+      "Class": "lang-pkgs",
+      "Type": "jar",
+      "Packages": [
+        {
+          "Name": "ch.qos.logback:logback-classic",
+          "Identifier": {
+            "PURL": "pkg:maven/ch.qos.logback/logback-classic@1.5.38",
+            "UID": "22cfb9fd130673a2"
+          },
+          "Version": "1.5.38",
+          "Licenses": [
+            "EPL-2.0",
+            "LGPL-2.1-only"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/logback-classic-1.5.38.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "ch.qos.logback:logback-core",
+          "Identifier": {
+            "PURL": "pkg:maven/ch.qos.logback/logback-core@1.5.38",
+            "UID": "8ea0a432d66c6efc"
+          },
+          "Version": "1.5.38",
+          "Licenses": [
+            "EPL-2.0",
+            "LGPL-2.1-only"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/logback-core-1.5.38.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "com.fasterxml.jackson.core:jackson-annotations",
+          "Identifier": {
+            "PURL": "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21",
+            "UID": "63e952e911fda08e"
+          },
+          "Version": "2.21",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jackson-annotations-2.21.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "com.mysql:mysql-connector-j",
+          "Identifier": {
+            "PURL": "pkg:maven/com.mysql/mysql-connector-j@9.7.0",
+            "UID": "57da4cafec8c83c5"
+          },
+          "Version": "9.7.0",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause",
+            "EPL-1.0",
+            "GPL-2.0-only",
+            "LGPL-2.1-only",
+            "Unicode-DFS-2015"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/mysql-connector-j-9.7.0.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "com.sun.istack:istack-commons-runtime",
+          "Identifier": {
+            "PURL": "pkg:maven/com.sun.istack/istack-commons-runtime@4.1.2",
+            "UID": "1f56f06934339a9e"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/istack-commons-runtime-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "com.zaxxer:HikariCP",
+          "Identifier": {
+            "PURL": "pkg:maven/com.zaxxer/HikariCP@7.0.2",
+            "UID": "ba95bcc97cc9a3d8"
+          },
+          "Version": "7.0.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/HikariCP-7.0.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "commons-logging:commons-logging",
+          "Identifier": {
+            "PURL": "pkg:maven/commons-logging/commons-logging@1.3.6",
+            "UID": "1619762e80600bb9"
+          },
+          "Version": "1.3.6",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/commons-logging-1.3.6.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.micrometer:micrometer-commons",
+          "Identifier": {
+            "PURL": "pkg:maven/io.micrometer/micrometer-commons@1.17.2",
+            "UID": "ad6cdfe3e47278cf"
+          },
+          "Version": "1.17.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-commons-1.17.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.micrometer:micrometer-core",
+          "Identifier": {
+            "PURL": "pkg:maven/io.micrometer/micrometer-core@1.17.2",
+            "UID": "ea35c1118c12e974"
+          },
+          "Version": "1.17.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-core-1.17.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.micrometer:micrometer-jakarta9",
+          "Identifier": {
+            "PURL": "pkg:maven/io.micrometer/micrometer-jakarta9@1.17.2",
+            "UID": "87b21b27ad6c1e78"
+          },
+          "Version": "1.17.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-jakarta9-1.17.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.micrometer:micrometer-observation",
+          "Identifier": {
+            "PURL": "pkg:maven/io.micrometer/micrometer-observation@1.17.2",
+            "UID": "af595a0bb211f8c"
+          },
+          "Version": "1.17.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-observation-1.17.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.micrometer:micrometer-registry-prometheus",
+          "Identifier": {
+            "PURL": "pkg:maven/io.micrometer/micrometer-registry-prometheus@1.17.2",
+            "UID": "588912e4e4db85b2"
+          },
+          "Version": "1.17.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-registry-prometheus-1.17.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.prometheus:prometheus-metrics-config",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/prometheus-metrics-config@1.7.0",
+            "UID": "2a758fce313392f"
+          },
+          "Version": "1.7.0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-config-1.7.0.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.prometheus:prometheus-metrics-core",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/prometheus-metrics-core@1.7.0",
+            "UID": "9e592d28a03e8e63"
+          },
+          "Version": "1.7.0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-core-1.7.0.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.prometheus:prometheus-metrics-exposition-formats",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/prometheus-metrics-exposition-formats@1.7.0",
+            "UID": "cad0d2e83b3e1cb6"
+          },
+          "Version": "1.7.0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-exposition-formats-1.7.0.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.prometheus:prometheus-metrics-exposition-textformats",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/prometheus-metrics-exposition-textformats@1.7.0",
+            "UID": "2293201ef6f1001c"
+          },
+          "Version": "1.7.0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-exposition-textformats-1.7.0.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.prometheus:prometheus-metrics-model",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/prometheus-metrics-model@1.7.0",
+            "UID": "7873f0dfe7d87733"
+          },
+          "Version": "1.7.0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-model-1.7.0.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "io.prometheus:prometheus-metrics-tracer-common",
+          "Identifier": {
+            "PURL": "pkg:maven/io.prometheus/prometheus-metrics-tracer-common@1.7.0",
+            "UID": "3c4c6b324a2e1d69"
+          },
+          "Version": "1.7.0",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-tracer-common-1.7.0.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "jakarta.activation:jakarta.activation-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.activation/jakarta.activation-api@2.1.4",
+            "UID": "6adb64df159ea0f9"
+          },
+          "Version": "2.1.4",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.activation-api-2.1.4.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "jakarta.annotation:jakarta.annotation-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0",
+            "UID": "45b01f07f691bf02"
+          },
+          "Version": "3.0.0",
+          "Licenses": [
+            "EPL-2.0",
+            "GPL-2.0-with-classpath-exception"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.annotation-api-3.0.0.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "jakarta.inject:jakarta.inject-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.inject/jakarta.inject-api@2.0.1",
+            "UID": "818fe72a152d2421"
+          },
+          "Version": "2.0.1",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.inject-api-2.0.1.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "jakarta.persistence:jakarta.persistence-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.persistence/jakarta.persistence-api@3.2.0",
+            "UID": "43377f985881cfe7"
+          },
+          "Version": "3.2.0",
+          "Licenses": [
+            "EPL-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.persistence-api-3.2.0.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "jakarta.transaction:jakarta.transaction-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.transaction/jakarta.transaction-api@2.0.1",
+            "UID": "7f93a184deb197b1"
+          },
+          "Version": "2.0.1",
+          "Licenses": [
+            "EPL-2.0",
+            "GPL-2.0-with-classpath-exception"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.transaction-api-2.0.1.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "jakarta.xml.bind:jakarta.xml.bind-api",
+          "Identifier": {
+            "PURL": "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.5",
+            "UID": "9472e6288937cce5"
+          },
+          "Version": "4.0.5",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.xml.bind-api-4.0.5.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "net.bytebuddy:byte-buddy",
+          "Identifier": {
+            "PURL": "pkg:maven/net.bytebuddy/byte-buddy@1.18.15",
+            "UID": "24ae2db1395a185d"
+          },
+          "Version": "1.18.15",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/byte-buddy-1.18.15.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.antlr:antlr4-runtime",
+          "Identifier": {
+            "PURL": "pkg:maven/org.antlr/antlr4-runtime@4.13.2",
+            "UID": "d5b84d1c4725e982"
+          },
+          "Version": "4.13.2",
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/antlr4-runtime-4.13.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.apache.logging.log4j:log4j-api",
+          "Identifier": {
+            "PURL": "pkg:maven/org.apache.logging.log4j/log4j-api@2.25.5",
+            "UID": "ac302f7f486be7b"
+          },
+          "Version": "2.25.5",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/log4j-api-2.25.5.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.apache.logging.log4j:log4j-to-slf4j",
+          "Identifier": {
+            "PURL": "pkg:maven/org.apache.logging.log4j/log4j-to-slf4j@2.25.5",
+            "UID": "4dea70b92dd74466"
+          },
+          "Version": "2.25.5",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/log4j-to-slf4j-2.25.5.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.apache.tomcat.embed:tomcat-embed-core",
+          "Identifier": {
+            "PURL": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@11.0.27",
+            "UID": "43a4cc43421701a3"
+          },
+          "Version": "11.0.27",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/tomcat-embed-core-11.0.27.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.apache.tomcat.embed:tomcat-embed-el",
+          "Identifier": {
+            "PURL": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@11.0.27",
+            "UID": "ad5db9184ed13bae"
+          },
+          "Version": "11.0.27",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/tomcat-embed-el-11.0.27.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "Identifier": {
+            "PURL": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@11.0.27",
+            "UID": "2595a691d66385b3"
+          },
+          "Version": "11.0.27",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/tomcat-embed-websocket-11.0.27.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.aspectj:aspectjweaver",
+          "Identifier": {
+            "PURL": "pkg:maven/org.aspectj/aspectjweaver@1.9.25.1",
+            "UID": "5ceec00af77497cf"
+          },
+          "Version": "1.9.25.1",
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/aspectjweaver-1.9.25.1.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.eclipse.angus:angus-activation",
+          "Identifier": {
+            "PURL": "pkg:maven/org.eclipse.angus/angus-activation@2.0.3",
+            "UID": "60a7c745ce0dfef6"
+          },
+          "Version": "2.0.3",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/angus-activation-2.0.3.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.glassfish.jaxb:jaxb-core",
+          "Identifier": {
+            "PURL": "pkg:maven/org.glassfish.jaxb/jaxb-core@4.0.9",
+            "UID": "ba5bd4583888ab65"
+          },
+          "Version": "4.0.9",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jaxb-core-4.0.9.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.glassfish.jaxb:jaxb-runtime",
+          "Identifier": {
+            "PURL": "pkg:maven/org.glassfish.jaxb/jaxb-runtime@4.0.9",
+            "UID": "1fa19d7e036d39b8"
+          },
+          "Version": "4.0.9",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jaxb-runtime-4.0.9.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.glassfish.jaxb:txw2",
+          "Identifier": {
+            "PURL": "pkg:maven/org.glassfish.jaxb/txw2@4.0.9",
+            "UID": "972d4a21e71c643d"
+          },
+          "Version": "4.0.9",
+          "Licenses": [
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/txw2-4.0.9.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.hdrhistogram:HdrHistogram",
+          "Identifier": {
+            "PURL": "pkg:maven/org.hdrhistogram/HdrHistogram@2.2.2",
+            "UID": "7cb935aa43fca745"
+          },
+          "Version": "2.2.2",
+          "Licenses": [
+            "CC0-1.0",
+            "BSD-2-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/HdrHistogram-2.2.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.hibernate.models:hibernate-models",
+          "Identifier": {
+            "PURL": "pkg:maven/org.hibernate.models/hibernate-models@1.1.2",
+            "UID": "f18c41abda096053"
+          },
+          "Version": "1.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/hibernate-models-1.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.hibernate:hibernate-core",
+          "Identifier": {
+            "PURL": "pkg:maven/org.hibernate/hibernate-core@7.4.13.Final",
+            "UID": "35e4413047dcc7d7"
+          },
+          "Version": "7.4.13.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/hibernate-core-7.4.13.Final.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.jboss.logging:jboss-logging",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jboss.logging/jboss-logging@3.6.3.Final",
+            "UID": "3bb584562137027b"
+          },
+          "Version": "3.6.3.Final",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jboss-logging-3.6.3.Final.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.jspecify:jspecify",
+          "Identifier": {
+            "PURL": "pkg:maven/org.jspecify/jspecify@1.0.1",
+            "UID": "e9ab7d1b2ce2b2fe"
+          },
+          "Version": "1.0.1",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jspecify-1.0.1.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.slf4j:jul-to-slf4j",
+          "Identifier": {
+            "PURL": "pkg:maven/org.slf4j/jul-to-slf4j@2.0.20",
+            "UID": "e17af8778fd5f877"
+          },
+          "Version": "2.0.20",
+          "Licenses": [
+            "MIT"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jul-to-slf4j-2.0.20.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.slf4j:slf4j-api",
+          "Identifier": {
+            "PURL": "pkg:maven/org.slf4j/slf4j-api@2.0.20",
+            "UID": "ecbc2d0fddfc63ec"
+          },
+          "Version": "2.0.20",
+          "Licenses": [
+            "MIT"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/slf4j-api-2.0.20.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot@4.1.2",
+            "UID": "938c3a413a16f7f3"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-actuator",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-actuator@4.1.2",
+            "UID": "3659372196482bf2"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-actuator-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-actuator-autoconfigure",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-actuator-autoconfigure@4.1.2",
+            "UID": "f4fac71f06d7ae26"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-actuator-autoconfigure-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-autoconfigure",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@4.1.2",
+            "UID": "39c3952f48da9db2"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-autoconfigure-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-data-commons",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-data-commons@4.1.2",
+            "UID": "34221ace860621e"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-data-commons-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-data-jpa",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-data-jpa@4.1.2",
+            "UID": "c9ee2636dd49bf3f"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-data-jpa-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-health",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-health@4.1.2",
+            "UID": "2bea7115f96da141"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-health-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-hibernate",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-hibernate@4.1.2",
+            "UID": "2a336f310ad76cd8"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-hibernate-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-http-converter",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-http-converter@4.1.2",
+            "UID": "4b3ef06b628a39d7"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-http-converter-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-jackson",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-jackson@4.1.2",
+            "UID": "84d04cd990b95d60"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-jackson-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-jarmode-tools",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-jarmode-tools@4.1.2",
+            "UID": "f88ecce99e4ac986"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-jarmode-tools-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-jdbc",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-jdbc@4.1.2",
+            "UID": "40c0dbe9422109d3"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-jdbc-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-jpa",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-jpa@4.1.2",
+            "UID": "6340b13cf13ac4c"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-jpa-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-micrometer-metrics",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-micrometer-metrics@4.1.2",
+            "UID": "4d81aad05c4b5fdf"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-micrometer-metrics-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-micrometer-observation",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-micrometer-observation@4.1.2",
+            "UID": "72188d9e3c0344b2"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-micrometer-observation-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-persistence",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-persistence@4.1.2",
+            "UID": "97539792e5a3b258"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-persistence-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-servlet",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-servlet@4.1.2",
+            "UID": "e495f93cbee38f8e"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-servlet-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-sql",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-sql@4.1.2",
+            "UID": "712cb3af1e7a1a79"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-sql-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-tomcat",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-tomcat@4.1.2",
+            "UID": "78b5ad934337d1e2"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-tomcat-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-transaction",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-transaction@4.1.2",
+            "UID": "9cb0de9ff1f83d29"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-transaction-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-web-server",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-web-server@4.1.2",
+            "UID": "dfb87418856e96d9"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-web-server-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.boot:spring-boot-webmvc",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.boot/spring-boot-webmvc@4.1.2",
+            "UID": "638dae0fc5f756cb"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-webmvc-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.data:spring-data-commons",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.data/spring-data-commons@4.1.2",
+            "UID": "cd0b9c8a8b87d6f1"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-data-commons-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework.data:spring-data-jpa",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework.data/spring-data-jpa@4.1.2",
+            "UID": "cc9a16a7c0910fa8"
+          },
+          "Version": "4.1.2",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-data-jpa-4.1.2.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-aop",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-aop@7.0.10",
+            "UID": "898170215efe9c58"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-aop-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-aspects",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-aspects@7.0.10",
+            "UID": "7c25ed918245e824"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-aspects-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-beans",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-beans@7.0.10",
+            "UID": "a7ccdde5f3db071a"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-beans-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-context",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-context@7.0.10",
+            "UID": "7641864889b4cc66"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-context-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-core",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-core@7.0.10",
+            "UID": "4291e085dc38c61b"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-core-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-expression",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-expression@7.0.10",
+            "UID": "595f145cf987b1e1"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-expression-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-jdbc",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-jdbc@7.0.10",
+            "UID": "46ad04c2e547db5c"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-jdbc-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-orm",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-orm@7.0.10",
+            "UID": "31b67f9e03f3c85c"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-orm-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-tx",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-tx@7.0.10",
+            "UID": "5930b642ea22b9ed"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-tx-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-web",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-web@7.0.10",
+            "UID": "a7d31e99c9e8badc"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-web-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.springframework:spring-webmvc",
+          "Identifier": {
+            "PURL": "pkg:maven/org.springframework/spring-webmvc@7.0.10",
+            "UID": "27ae51f2b0e68faf"
+          },
+          "Version": "7.0.10",
+          "Licenses": [
+            "Apache-2.0",
+            "BSD-3-Clause"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/spring-webmvc-7.0.10.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "org.yaml:snakeyaml",
+          "Identifier": {
+            "PURL": "pkg:maven/org.yaml/snakeyaml@2.6",
+            "UID": "77b25ab2a7820645"
+          },
+          "Version": "2.6",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/snakeyaml-2.6.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "tn.esprit.spring.services:timesheet-devops",
+          "Identifier": {
+            "PURL": "pkg:maven/tn.esprit.spring.services/timesheet-devops@1.0",
+            "UID": "d0841c271c46081a"
+          },
+          "Version": "1.0",
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "tools.jackson.core:jackson-core",
+          "Identifier": {
+            "PURL": "pkg:maven/tools.jackson.core/jackson-core@3.1.7",
+            "UID": "28ad3f2a5a93c4a7"
+          },
+          "Version": "3.1.7",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jackson-core-3.1.7.jar",
+          "AnalyzedBy": "jar"
+        },
+        {
+          "Name": "tools.jackson.core:jackson-databind",
+          "Identifier": {
+            "PURL": "pkg:maven/tools.jackson.core/jackson-databind@3.1.7",
+            "UID": "5c972dd26551928a"
+          },
+          "Version": "3.1.7",
+          "Licenses": [
+            "Apache-2.0"
+          ],
+          "Layer": {
+            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          },
+          "FilePath": "app/app.jar/BOOT-INF/lib/jackson-databind-3.1.7.jar",
+          "AnalyzedBy": "jar"
+        }
+      ]
+    },
+    {
+      "Target": "usr/bin/pebble",
+      "Class": "lang-pkgs",
+      "Type": "gobinary",
+      "Packages": [
+        {
+          "ID": "github.com/canonical/pebble@v1.33.3-0.20261021134118-f036f355de35",
+          "Name": "github.com/canonical/pebble",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/canonical/pebble@v1.33.3-0.20261021134118-f036f355de35",
+            "UID": "3414d8bd66c97fe1"
+          },
+          "Version": "v1.33.3-0.20261021134118-f036f355de35",
+          "Relationship": "root",
+          "DependsOn": [
+            "github.com/GehirnInc/crypt@v0.0.0-20230320061759-8cc1b52080c5",
+            "github.com/canonical/go-flags@v0.0.0-20230403090104-105d09a091b8",
+            "github.com/canonical/x-go@v0.0.0-20230522092633-7947a7587f5b",
+            "github.com/gorilla/websocket@v1.5.3",
+            "golang.org/x/sys@v0.48.0",
+            "golang.org/x/term@v0.46.0",
+            "gopkg.in/tomb.v2@v2.0.0-20161208151619-d5d1b5820637",
+            "gopkg.in/yaml.v2@v2.4.0",
+            "gopkg.in/yaml.v3@v3.0.1",
+            "stdlib@v1.27.3"
+          ],
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "stdlib@v1.27.3",
+          "Name": "stdlib",
+          "Identifier": {
+            "PURL": "pkg:golang/stdlib@v1.27.3",
+            "UID": "e374b4c8f0056732"
+          },
+          "Version": "v1.27.3",
+          "Relationship": "direct",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/GehirnInc/crypt@v0.0.0-20230320061759-8cc1b52080c5",
+          "Name": "github.com/GehirnInc/crypt",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/gehirninc/crypt@v0.0.0-20230320061759-8cc1b52080c5",
+            "UID": "872de98b1a1db559"
+          },
+          "Version": "v0.0.0-20230320061759-8cc1b52080c5",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/canonical/go-flags@v0.0.0-20230403090104-105d09a091b8",
+          "Name": "github.com/canonical/go-flags",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/canonical/go-flags@v0.0.0-20230403090104-105d09a091b8",
+            "UID": "69b8895acabe3502"
+          },
+          "Version": "v0.0.0-20230403090104-105d09a091b8",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/canonical/x-go@v0.0.0-20230522092633-7947a7587f5b",
+          "Name": "github.com/canonical/x-go",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/canonical/x-go@v0.0.0-20230522092633-7947a7587f5b",
+            "UID": "b6ee9753e1705c75"
+          },
+          "Version": "v0.0.0-20230522092633-7947a7587f5b",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/gorilla/websocket@v1.5.3",
+          "Name": "github.com/gorilla/websocket",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/gorilla/websocket@v1.5.3",
+            "UID": "1f754562965367e9"
+          },
+          "Version": "v1.5.3",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "golang.org/x/sys@v0.48.0",
+          "Name": "golang.org/x/sys",
+          "Identifier": {
+            "PURL": "pkg:golang/golang.org/x/sys@v0.48.0",
+            "UID": "81b5965e48e886aa"
+          },
+          "Version": "v0.48.0",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "golang.org/x/term@v0.46.0",
+          "Name": "golang.org/x/term",
+          "Identifier": {
+            "PURL": "pkg:golang/golang.org/x/term@v0.46.0",
+            "UID": "9cf47d4d4c660438"
+          },
+          "Version": "v0.46.0",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "gopkg.in/tomb.v2@v2.0.0-20161208151619-d5d1b5820637",
+          "Name": "gopkg.in/tomb.v2",
+          "Identifier": {
+            "PURL": "pkg:golang/gopkg.in/tomb.v2@v2.0.0-20161208151619-d5d1b5820637",
+            "UID": "70f46d14c742e58b"
+          },
+          "Version": "v2.0.0-20161208151619-d5d1b5820637",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "gopkg.in/yaml.v2@v2.4.0",
+          "Name": "gopkg.in/yaml.v2",
+          "Identifier": {
+            "PURL": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+            "UID": "a644e844cdd3a649"
+          },
+          "Version": "v2.4.0",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "gopkg.in/yaml.v3@v3.0.1",
+          "Name": "gopkg.in/yaml.v3",
+          "Identifier": {
+            "PURL": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+            "UID": "92d7bc8aa43ca795"
+          },
+          "Version": "v3.0.1",
+          "Layer": {
+            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+          },
+          "AnalyzedBy": "gobinary"
+        }
+      ]
+    }
+  ]
+}
