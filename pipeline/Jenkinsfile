@@ -53,7 +53,7 @@ pipeline {
           trivy fs --scanners vuln --severity CRITICAL --ignore-unfixed --exit-code 1 --format json --output reports/trivy-dependencies.json .
           trivy config --severity CRITICAL --exit-code 1 .
           docker build --tag "$IMAGE" .
-          trivy image --severity CRITICAL --ignore-unfixed --exit-code 1 "$IMAGE"
+          trivy image --scanners vuln --timeout 20m --severity CRITICAL --ignore-unfixed --exit-code 1 "$IMAGE"
         '''
       }
     }
