@@ -42,7 +42,7 @@ services:
     ports: ["127.0.0.1:8080:8080", "127.0.0.1:50000:50000"]
     environment:
       CASC_JENKINS_CONFIG: /var/jenkins_config/casc.yaml
-      JENKINS_ADMIN_ID: ${JENKINS_ADMIN_ID:-safwen}
+      JENKINS_ADMIN_ID: ${JENKINS_ADMIN_ID:-Safwen-amaira}
       JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD:-local-only-jenkins-password}
       DB_PASSWORD: ${DB_PASSWORD:-local-only-timesheet-password}
       SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
@@ -53,7 +53,6 @@ services:
       - ./jenkins/init.groovy.d:/usr/share/jenkins/ref/init.groovy.d:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - k3s_kubeconfig_native:/kubeconfig:ro
-      - ./reports:/var/jenkins_home/workspace/DevSecOps-ESPRIT/reports
     group_add: ["${DOCKER_GID:-999}"]
     depends_on:
       kubeconfig-init: {condition: service_completed_successfully}

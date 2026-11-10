@@ -58,7 +58,7 @@ On Linux, set `DOCKER_GID` in `.env` to the group id from `stat -c '%g' /var/run
 Web UIs:
 
 - App: `http://localhost:8082/timesheet-devops/`
-- Jenkins: `http://localhost:8080` (`safwen` / `local-only-jenkins-password`)
+- Jenkins: `http://localhost:8080` (`Safwen-amaira` / `local-only-jenkins-password`)
 - SonarQube: `http://localhost:9000`
 - Nexus: `http://localhost:8081`
 - Prometheus: `http://localhost:9090`

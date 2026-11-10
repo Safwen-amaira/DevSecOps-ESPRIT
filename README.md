@@ -32,7 +32,7 @@ Jenkins creates the `DevSecOps-ESPRIT` job automatically and polls GitHub every 
 | Component | Local URL |
 |---|---|
 | Timesheet application | http://localhost:8082/timesheet-devops/ |
-| Jenkins | http://localhost:8080 (`safwen` / `local-only-jenkins-password`) |
+| Jenkins | http://localhost:8080 (`Safwen-amaira` / `local-only-jenkins-password`) |
 | SonarQube | http://localhost:9000 |
 | Nexus | http://localhost:8081 |
 | Prometheus | http://localhost:9090 |
