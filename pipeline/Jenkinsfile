@@ -67,7 +67,12 @@ pipeline {
           kubectl apply -f kubernetes/database/service.yaml
           kubectl apply -f kubernetes/app/deployment.yaml
           kubectl apply -f kubernetes/app/service.yaml
-          docker save "$IMAGE" | docker exec -i k3s ctr -n k8s.io images import -
+          K3S_CONTAINER=$(docker ps --filter 'label=com.docker.compose.service=k3s' --format '{{.ID}}' | head -n 1)
+          if [ -z "$K3S_CONTAINER" ]; then
+            echo 'Could not find the running Compose k3s container. Start the DevSecOps Compose stack and retry.'
+            exit 1
+          fi
+          docker save "$IMAGE" | docker exec -i "$K3S_CONTAINER" ctr -n k8s.io images import -
           kubectl set image deployment/timesheet-dep timesheet="$IMAGE" -n "$K8S_NAMESPACE"
           kubectl rollout status deployment/mysql-dep -n "$K8S_NAMESPACE" --timeout=180s
           kubectl rollout status deployment/timesheet-dep -n "$K8S_NAMESPACE" --timeout=240s
