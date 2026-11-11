@@ -43,6 +43,43 @@ pipeline {
         }
       }
     }
+
+
+
+
+
+
+
+      
+stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            sh '''
+                mvn --batch-mode --no-transfer-progress clean verify sonar:sonar \
+                  -Dsonar.projectKey=timesheet-devops \
+                  -Dsonar.projectName=timesheet-devops
+            '''
+        }
+    }
+}
+
+stage('SonarQube Quality Gate') {
+    steps {
+        timeout(time: 5, unit: 'MINUTES') {
+            script {
+                def qualityGate = waitForQualityGate()
+
+                echo "SonarQube Quality Gate: ${qualityGate.status}"
+
+                if (qualityGate.status != 'OK') {
+                    error "SonarQube Quality Gate failed: ${qualityGate.status}. Deployment blocked."
+                }
+            }
+        }
+    }
+}
+
+      
     stage('Pre-deploy security gates') {
       steps {
         sh '''
