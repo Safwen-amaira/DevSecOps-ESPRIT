@@ -3,8 +3,8 @@
   "Trivy": {
     "Version": "0.76.2"
   },
-  "ReportID": "01a1ca3a-a4a6-7409-a663-df65d1a08ce8",
-  "CreatedAt": "2026-11-11T10:50:03.302266868Z",
+  "ReportID": "01a1cade-8ca8-796b-9dd6-20c6abb39ef4",
+  "CreatedAt": "2026-11-11T13:49:05.064619289Z",
   "ArtifactID": "sha256:760c7a803a0178f4334c766f4fb02f4dd74bf2c1684cc61e8154238a95f3b68d",
   "ArtifactName": "timesheet-devsecops:local",
   "ArtifactType": "container_image",

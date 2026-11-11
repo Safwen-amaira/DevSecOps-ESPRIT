@@ -11,6 +11,8 @@ Usage:
 
 Exit code 1 means "risk found" (the stage becomes UNSTABLE, the build continues).
 """
+
+
 import json
 import os
 import re

@@ -171,7 +171,7 @@ services:
   k3s:
     image: rancher/k3s:v1.34.1-k3s1
     # Native snapshots avoid nested overlayfs issues on hosts using Btrfs.
-    command: ["server", "--snapshotter", "native", "--disable", "traefik", "--write-kubeconfig", "/shared/config", "--write-kubeconfig-mode", "644", "--tls-san", "k3s", "--node-name", "k3s-node"]
+    command: ["server", "--snapshotter", "native", "--disable", "traefik", "--write-kubeconfig", "/shared/config", "--write-kubeconfig-mode", "644", "--tls-san", "k3s", "--node-name", "k3s-node", "--node-ip", "172.30.0.10"]
     privileged: true
     cgroup: host
     hostname: k3s-node
@@ -182,7 +182,9 @@ services:
       - k3s_kubeconfig_native:/shared
     ports: ["127.0.0.1:6443:6443"]
     restart: unless-stopped
-    networks: [devsecops]
+    networks:
+      devsecops:
+        ipv4_address: 172.30.0.10
   kubeconfig-init:
     image: alpine:3.22
     entrypoint: ["/bin/sh", "-c"]
@@ -210,3 +212,6 @@ volumes:
 networks:
   devsecops:
     name: devsecops
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
