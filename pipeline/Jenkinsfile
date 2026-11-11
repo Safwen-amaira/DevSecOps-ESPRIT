@@ -51,17 +51,21 @@ pipeline {
 
 
       
+
 stage('SonarQube Analysis') {
     steps {
         withSonarQubeEnv('SonarQube') {
             sh '''
-                mvn --batch-mode --no-transfer-progress clean verify sonar:sonar \
+                mvn --batch-mode --no-transfer-progress \
+                  clean verify \
+                  org.sonarsource.scanner.maven:sonar-maven-plugin:5.8.0.7211:sonar \
                   -Dsonar.projectKey=timesheet-devops \
                   -Dsonar.projectName=timesheet-devops
             '''
         }
     }
 }
+
 
 stage('SonarQube Quality Gate') {
     steps {
