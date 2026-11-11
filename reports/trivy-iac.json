@@ -3,16 +3,16 @@
   "Trivy": {
     "Version": "0.76.2"
   },
-  "ReportID": "01a1c597-5979-7c6b-a85e-0666dd5d36ce",
-  "CreatedAt": "2026-11-10T13:13:12.825817636Z",
-  "ArtifactID": "sha256:fc56470f8c62d166c5aaf13809e40f2537283d5608efb352a8de4f7c6f7e2a68",
+  "ReportID": "01a1ca24-848a-7e8a-8462-caea45e59240",
+  "CreatedAt": "2026-11-11T10:25:53.290954648Z",
+  "ArtifactID": "sha256:f0b2c79c3399522161eb64e3379b931608334b06eb3eccc1aaa88397f1771cd4",
   "ArtifactName": "/src",
   "ArtifactType": "repository",
   "Metadata": {
     "RepoURL": "https://github.com/Safwen-amaira/DevSecOps-ESPRIT.git",
     "Branch": "master",
-    "Commit": "f73b256c401c6f2cbc47bb1436fbe611c1e0812a",
-    "CommitMsg": "test",
+    "Commit": "db3ac9450a0877068efb46b9c6a2ab46ab7f1d57",
+    "CommitMsg": "Fix k3s image import in Jenkins",
     "Author": "Safwen-amaira \u003camairasafwen@icloud.com\u003e",
     "Committer": "Safwen-amaira \u003camairasafwen@icloud.com\u003e"
   },
