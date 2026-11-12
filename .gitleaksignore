@@ -3,3 +3,4 @@
 4c0583e9248493431119634babb60eff929f1976:.gitleaksignore:curl-auth-user:1
 99ebc9a4c7de4cc11a3d53e5d4818d31782cce63:pipeline/Jenkinsfile:curl-auth-user:363
 99ebc9a4c7de4cc11a3d53e5d4818d31782cce63:pipeline/Jenkinsfile:curl-auth-user:367
+a66c6c8868a10cc1c46cf43344c45a04f20112f0:security/semgrep-rules.yml:generic-api-key:7
