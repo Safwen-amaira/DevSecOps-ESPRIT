@@ -4,7 +4,6 @@ rules:
   # Esprit 5NIDS5 — Timesheet DevOps Application
   # Based on OWASP Top 10 2021
   # ============================================================
-  # API_KEY= ddc89af93fb7f4a851cee6773d4597d5f95f2401d76a955d8eed4acde076548e
   # A01: Broken Access Control
   - id: missing-authorization-annotation
     patterns:
