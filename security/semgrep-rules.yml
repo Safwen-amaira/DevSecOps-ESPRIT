@@ -5,11 +5,8 @@ rules:
   # Based on OWASP Top 10 2021
   # ============================================================
   # A01: Broken Access Control
-  #API_KEY=fidjsgdoknpgfogdhgfjhgfplezkogrehtnkbfdsghgfdfsdg
-  #API_KEY=fidjsgdoknpgfogdhgfjhgfplezkogrehtnkbfdsghgfdfsdg
-  #API_KEY=fidjsgdoknpgfogdhgfjhgfplezkogrehtnkbfdsghgfdfsdg
 
-
+  #SECRET_KEY = fdsdfjdfsjdfjsksfdkds32443T12431242123123
   - id: missing-authorization-annotation
     patterns:
       - pattern: |
