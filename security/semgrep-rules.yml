@@ -6,6 +6,8 @@ rules:
   # ============================================================
   # A01: Broken Access Control
   #API_KEY=fidjsgdoknpgfogdhgfjhgfplezkogrehtnkbfdsghgfdfsdg
+  #API_KEY=fidjsgdoknpgfogdhgfjhgfplezkogrehtnkbfdsghgfdfsdg
+  #API_KEY=fidjsgdoknpgfogdhgfjhgfplezkogrehtnkbfdsghgfdfsdg
 
 
   - id: missing-authorization-annotation
