@@ -3,28 +3,28 @@
   "Trivy": {
     "Version": "0.76.2"
   },
-  "ReportID": "01a1cade-8ca8-796b-9dd6-20c6abb39ef4",
-  "CreatedAt": "2026-11-11T13:49:05.064619289Z",
-  "ArtifactID": "sha256:760c7a803a0178f4334c766f4fb02f4dd74bf2c1684cc61e8154238a95f3b68d",
+  "ReportID": "01a1cf3d-ab13-7ac7-92e7-750335e11749",
+  "CreatedAt": "2026-11-12T10:11:27.635714017Z",
+  "ArtifactID": "sha256:172a1866dfefc73054acb051070b6efee4b38aaa40870c43764c17598c2cd017",
   "ArtifactName": "timesheet-devsecops:local",
   "ArtifactType": "container_image",
   "Metadata": {
-    "Size": 366550528,
+    "Size": 366572032,
     "OS": {
       "Family": "ubuntu",
       "Name": "26.04"
     },
-    "ImageID": "sha256:c8e76548749182c5853340b8f74ab4cc9d922620fdeb92808e319eabe407c414",
+    "ImageID": "sha256:68c9bfe85ce8746c9be17729899ee261b0ca0acd02e9f750cebf68794a45f092",
     "DiffIDs": [
-      "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824",
-      "sha256:5f4be2c3badedfd7149d008a4902427c98e708c70031dc19b4264160a545df19",
-      "sha256:a1b84a0afc417900d6c5e169c76df4deff6233b684b700297be190f9bfbf17c0",
-      "sha256:2612ac3f9b707727734b54fbb37e609c70807cbc51186460f3a78c4a84ad5595",
-      "sha256:347cc08f1b05909e7240db5559e8324f049d9ff60d74ec2f1b42e978024968cc",
-      "sha256:f75073f40b100816472317910ba0efbad52c084a468a37051be6c3d1a9fcf93e",
-      "sha256:6dbaa487d7a37f3da0c6ced7856ff5078987e2c28b02cb8fcfbf12f890349f1f",
-      "sha256:10aa32e941df526263b246dbbe03fa893cb6aec32e8daa989c6287aab406c359",
-      "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+      "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124",
+      "sha256:758b22fe15be2c330dcead0c1b50476c074e113ec507627c6430337ffc9daa5e",
+      "sha256:99fa9842efd1665c914223287ad890f0dc9d60df9d6b953efc7435b4fa09ca1f",
+      "sha256:147a9582efe9cb722503d44500c36642e4003e8ad8757cf6fb38a65223b3c199",
+      "sha256:63ad22ac69159752a16f864e433685ca29d9becff28aa045cd11567a11e4f980",
+      "sha256:56c86a3fb139df84d417239f09c9460b436a70c42ef65e8ee24f570bc69e473d",
+      "sha256:ae2aad0f9b15d156e456f9d5da6eda46aa8d0b63d764cd4dd18365a7cf8156aa",
+      "sha256:2e24bbcb701d8276ad6dac5a91a6257e546f1009ffd497b6555579ef9788b511",
+      "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
     ],
     "RepoTags": [
       "timesheet-devsecops:local"
@@ -32,120 +32,120 @@
     "Reference": "timesheet-devsecops:local",
     "ImageConfig": {
       "architecture": "amd64",
-      "created": "2026-11-10T11:16:38.962560216+01:00",
+      "created": "2026-11-12T09:51:54.303709329+01:00",
       "history": [
         {
-          "created": "2026-10-25T10:26:07.097258483Z",
-          "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:rockcraft-base /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/.temp_layer.9587.tar --tag 26.04"
+          "created": "2026-11-06T10:28:49.539971557Z",
+          "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-f9b0ae373a9aa61a96756fa393588993/images/ubuntu:rockcraft-base /home/buildd/rockcraft-ubuntu-f9b0ae373a9aa61a96756fa393588993/images/.temp_layer.8947.tar --tag 26.04"
         },
         {
-          "created": "2026-10-25T10:26:07.51326611Z",
-          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --clear=config.entrypoint --clear=config.cmd",
+          "created": "2026-11-06T10:28:50.066213635Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-f9b0ae373a9aa61a96756fa393588993/images/ubuntu:26.04 --clear=config.entrypoint --clear=config.cmd",
           "comment": "Set entrypoint",
           "empty_layer": true
         },
         {
-          "created": "2026-10-25T10:26:07.523539328Z",
-          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --clear=config.cmd --config.cmd /bin/bash",
+          "created": "2026-11-06T10:28:50.09514263Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-f9b0ae373a9aa61a96756fa393588993/images/ubuntu:26.04 --clear=config.cmd --config.cmd /bin/bash",
           "comment": "Set default commands",
           "empty_layer": true
         },
         {
-          "created": "2026-10-25T10:26:07.533945465Z",
-          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --config.env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "created": "2026-11-06T10:28:50.124897422Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-f9b0ae373a9aa61a96756fa393588993/images/ubuntu:26.04 --config.env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
           "comment": "Set default PATH for bare-based rock",
           "empty_layer": true
         },
         {
-          "created": "2026-10-25T10:26:07.544106373Z",
-          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --clear=config.labels --config.label org.opencontainers.image.version=26.04 --config.label org.opencontainers.image.title=ubuntu --config.label org.opencontainers.image.created=2026-10-25T10:26:07.538865+00:00 --config.label org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+          "created": "2026-11-06T10:28:50.148020867Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-f9b0ae373a9aa61a96756fa393588993/images/ubuntu:26.04 --clear=config.labels --config.label org.opencontainers.image.version=26.04 --config.label org.opencontainers.image.title=ubuntu --config.label org.opencontainers.image.created=2026-11-06T10:28:50.132595+00:00 --config.label org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
           "comment": "Set labels",
           "empty_layer": true
         },
         {
-          "created": "2026-10-25T10:26:07.555793355Z",
-          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 --clear=manifest.annotations --manifest.annotation org.opencontainers.image.version=26.04 --manifest.annotation org.opencontainers.image.title=ubuntu --manifest.annotation org.opencontainers.image.created=2026-10-25T10:26:07.538865+00:00 --manifest.annotation org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+          "created": "2026-11-06T10:28:50.179663443Z",
+          "created_by": "umoci config --image /home/buildd/rockcraft-ubuntu-f9b0ae373a9aa61a96756fa393588993/images/ubuntu:26.04 --clear=manifest.annotations --manifest.annotation org.opencontainers.image.version=26.04 --manifest.annotation org.opencontainers.image.title=ubuntu --manifest.annotation org.opencontainers.image.created=2026-11-06T10:28:50.132595+00:00 --manifest.annotation org.opencontainers.image.description=The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
           "comment": "Set annotations",
           "empty_layer": true
         },
         {
-          "created": "2026-10-25T10:26:07.568398974Z",
-          "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/ubuntu:26.04 /home/buildd/rockcraft-ubuntu-cc003627bc5bab71b42ff0f8e1a41f88/images/.temp_layer.control_data.9587.tar",
+          "created": "2026-11-06T10:28:50.193437721Z",
+          "created_by": "umoci raw add-layer --image /home/buildd/rockcraft-ubuntu-f9b0ae373a9aa61a96756fa393588993/images/ubuntu:26.04 /home/buildd/rockcraft-ubuntu-f9b0ae373a9aa61a96756fa393588993/images/.temp_layer.control_data.8947.tar",
           "comment": "Add rock control metadata"
         },
         {
-          "created": "2026-11-03T21:57:40.456522538Z",
+          "created": "2026-11-11T23:16:39.281615424Z",
           "created_by": "ENV JAVA_HOME=/opt/java/openjdk",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-11-03T21:57:40.456522538Z",
+          "created": "2026-11-11T23:16:39.281615424Z",
           "created_by": "ENV PATH=/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-11-03T21:57:40.456522538Z",
+          "created": "2026-11-11T23:16:39.281615424Z",
           "created_by": "ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-11-03T21:57:40.456522538Z",
+          "created": "2026-11-11T23:16:39.281615424Z",
           "created_by": "RUN /bin/sh -c set -eux;     apt-get update;     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends         curl         wget         gnupg         fontconfig         ca-certificates p11-kit         tzdata         locales     ;     echo \"en_US.UTF-8 UTF-8\" \u003e\u003e /etc/locale.gen;     locale-gen en_US.UTF-8;     rm -rf /var/lib/apt/lists/* # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-11-03T21:57:40.456522538Z",
+          "created": "2026-11-11T23:16:39.281615424Z",
           "created_by": "ENV JAVA_VERSION=jdk-17.0.21+9",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-11-03T21:57:43.042056455Z",
+          "created": "2026-11-11T23:17:19.480866546Z",
           "created_by": "RUN /bin/sh -c set -eux;     ARCH=\"$(dpkg --print-architecture)\";     case \"${ARCH}\" in        amd64)          ESUM='9f41bf88c7900c7097444a1bdeb84146ae692bc08842490ab098063c74bf9a8a';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_x64_linux_hotspot_17.0.21_9.tar.gz';          ;;        arm64)          ESUM='1114f09d6174f54270c3117410b5e4022b43ebc0b43b751af08b927c55ed7bb5';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_aarch64_linux_hotspot_17.0.21_9.tar.gz';          ;;        armhf)          ESUM='a1f61c0a9a76af31e6954f93ba329650ce16e556d0508227a50c6203ff012357';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_arm_linux_hotspot_17.0.21_9.tar.gz';          ;;        ppc64el)          ESUM='7836a98346529939fc1149a59c7159d0ea721c2028fbfade620d60e58293d65f';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_ppc64le_linux_hotspot_17.0.21_9.tar.gz';          ;;        s390x)          ESUM='c2f8f6c55b09a5bb9c26fbdc85cad41e10860a396da447e2ce7a182480e74945';          BINARY_URL='https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.21%2B9/OpenJDK17U-jre_s390x_linux_hotspot_17.0.21_9.tar.gz';          ;;        *)          echo \"Unsupported arch: ${ARCH}\";          exit 1;          ;;     esac;     wget --progress=dot:giga -O /tmp/openjdk.tar.gz ${BINARY_URL};     wget --progress=dot:giga -O /tmp/openjdk.tar.gz.sig ${BINARY_URL}.sig;     export GNUPGHOME=\"$(mktemp -d)\";     gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 3B04D753C9050D9A5D343F39843C48A565F8F04B;     gpg --batch --verify /tmp/openjdk.tar.gz.sig /tmp/openjdk.tar.gz;     rm -rf \"${GNUPGHOME}\" /tmp/openjdk.tar.gz.sig;     echo \"${ESUM} */tmp/openjdk.tar.gz\" | sha256sum -c -;     mkdir -p \"$JAVA_HOME\";     tar --extract         --file /tmp/openjdk.tar.gz         --directory \"$JAVA_HOME\"         --strip-components 1         --no-same-owner     ;     rm -f /tmp/openjdk.tar.gz;     find \"$JAVA_HOME/lib\" -name '*.so' -exec dirname '{}' ';' | sort -u \u003e /etc/ld.so.conf.d/docker-openjdk.conf;     ldconfig;     java -Xshare:dump; # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-11-03T21:57:43.142967103Z",
+          "created": "2026-11-11T23:17:19.617031663Z",
           "created_by": "RUN /bin/sh -c set -eux;     echo \"Verifying install ...\";     echo \"java --version\"; java --version;     echo \"Complete.\" # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-11-03T21:57:43.166855233Z",
+          "created": "2026-11-11T23:17:19.662486124Z",
           "created_by": "COPY --chmod=755 entrypoint.sh /__cacert_entrypoint.sh # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-11-03T21:57:43.166855233Z",
+          "created": "2026-11-11T23:17:19.662486124Z",
           "created_by": "ENTRYPOINT [\"/__cacert_entrypoint.sh\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-11-10T11:14:19.82355176+01:00",
+          "created": "2026-11-12T09:49:40.421079303+01:00",
           "created_by": "WORKDIR /app",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-11-10T11:16:38.86413087+01:00",
+          "created": "2026-11-12T09:51:54.151425422+01:00",
           "created_by": "RUN /bin/sh -c apt-get update \u0026\u0026 apt-get install -y --no-install-recommends curl     \u0026\u0026 rm -rf /var/lib/apt/lists/* # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-11-10T11:16:38.962560216+01:00",
+          "created": "2026-11-12T09:51:54.303709329+01:00",
           "created_by": "COPY /app/target/timesheet-devops-1.0.jar app.jar # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-11-10T11:16:38.962560216+01:00",
+          "created": "2026-11-12T09:51:54.303709329+01:00",
           "created_by": "EXPOSE [8082/tcp]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-11-10T11:16:38.962560216+01:00",
+          "created": "2026-11-12T09:51:54.303709329+01:00",
           "created_by": "ENTRYPOINT [\"java\" \"-jar\" \"app.jar\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -155,15 +155,15 @@
       "rootfs": {
         "type": "layers",
         "diff_ids": [
-          "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824",
-          "sha256:5f4be2c3badedfd7149d008a4902427c98e708c70031dc19b4264160a545df19",
-          "sha256:a1b84a0afc417900d6c5e169c76df4deff6233b684b700297be190f9bfbf17c0",
-          "sha256:2612ac3f9b707727734b54fbb37e609c70807cbc51186460f3a78c4a84ad5595",
-          "sha256:347cc08f1b05909e7240db5559e8324f049d9ff60d74ec2f1b42e978024968cc",
-          "sha256:f75073f40b100816472317910ba0efbad52c084a468a37051be6c3d1a9fcf93e",
-          "sha256:6dbaa487d7a37f3da0c6ced7856ff5078987e2c28b02cb8fcfbf12f890349f1f",
-          "sha256:10aa32e941df526263b246dbbe03fa893cb6aec32e8daa989c6287aab406c359",
-          "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+          "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124",
+          "sha256:758b22fe15be2c330dcead0c1b50476c074e113ec507627c6430337ffc9daa5e",
+          "sha256:99fa9842efd1665c914223287ad890f0dc9d60df9d6b953efc7435b4fa09ca1f",
+          "sha256:147a9582efe9cb722503d44500c36642e4003e8ad8757cf6fb38a65223b3c199",
+          "sha256:63ad22ac69159752a16f864e433685ca29d9becff28aa045cd11567a11e4f980",
+          "sha256:56c86a3fb139df84d417239f09c9460b436a70c42ef65e8ee24f570bc69e473d",
+          "sha256:ae2aad0f9b15d156e456f9d5da6eda46aa8d0b63d764cd4dd18365a7cf8156aa",
+          "sha256:2e24bbcb701d8276ad6dac5a91a6257e546f1009ffd497b6555579ef9788b511",
+          "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
         ]
       },
       "config": {
@@ -184,7 +184,7 @@
           "com.docker.compose.project": "timesheet-project",
           "com.docker.compose.service": "timesheet-app",
           "com.docker.compose.version": "2.26.1",
-          "org.opencontainers.image.created": "2026-10-25T10:26:07.538865+00:00",
+          "org.opencontainers.image.created": "2026-11-06T10:28:50.132595+00:00",
           "org.opencontainers.image.description": "The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
           "org.opencontainers.image.title": "ubuntu",
           "org.opencontainers.image.version": "26.04"
@@ -197,40 +197,40 @@
     },
     "Layers": [
       {
-        "Size": 112998400,
-        "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+        "Size": 113018880,
+        "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
       },
       {
         "Size": 10240,
-        "DiffID": "sha256:5f4be2c3badedfd7149d008a4902427c98e708c70031dc19b4264160a545df19"
+        "DiffID": "sha256:758b22fe15be2c330dcead0c1b50476c074e113ec507627c6430337ffc9daa5e"
       },
       {
-        "Size": 54311424,
-        "DiffID": "sha256:a1b84a0afc417900d6c5e169c76df4deff6233b684b700297be190f9bfbf17c0"
+        "Size": 54312448,
+        "DiffID": "sha256:99fa9842efd1665c914223287ad890f0dc9d60df9d6b953efc7435b4fa09ca1f"
       },
       {
         "Size": 142081024,
-        "DiffID": "sha256:2612ac3f9b707727734b54fbb37e609c70807cbc51186460f3a78c4a84ad5595"
+        "DiffID": "sha256:147a9582efe9cb722503d44500c36642e4003e8ad8757cf6fb38a65223b3c199"
       },
       {
         "Size": 2560,
-        "DiffID": "sha256:347cc08f1b05909e7240db5559e8324f049d9ff60d74ec2f1b42e978024968cc"
+        "DiffID": "sha256:63ad22ac69159752a16f864e433685ca29d9becff28aa045cd11567a11e4f980"
       },
       {
         "Size": 7680,
-        "DiffID": "sha256:f75073f40b100816472317910ba0efbad52c084a468a37051be6c3d1a9fcf93e"
+        "DiffID": "sha256:56c86a3fb139df84d417239f09c9460b436a70c42ef65e8ee24f570bc69e473d"
       },
       {
         "Size": 1536,
-        "DiffID": "sha256:6dbaa487d7a37f3da0c6ced7856ff5078987e2c28b02cb8fcfbf12f890349f1f"
+        "DiffID": "sha256:ae2aad0f9b15d156e456f9d5da6eda46aa8d0b63d764cd4dd18365a7cf8156aa"
       },
       {
         "Size": 7680,
-        "DiffID": "sha256:10aa32e941df526263b246dbbe03fa893cb6aec32e8daa989c6287aab406c359"
+        "DiffID": "sha256:2e24bbcb701d8276ad6dac5a91a6257e546f1009ffd497b6555579ef9788b511"
       },
       {
         "Size": 57129984,
-        "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+        "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
       }
     ]
   },
@@ -252,7 +252,7 @@
             "LGPL-2.1-only"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/logback-classic-1.5.38.jar",
           "AnalyzedBy": "jar"
@@ -269,7 +269,7 @@
             "LGPL-2.1-only"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/logback-core-1.5.38.jar",
           "AnalyzedBy": "jar"
@@ -285,7 +285,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jackson-annotations-2.21.jar",
           "AnalyzedBy": "jar"
@@ -306,7 +306,7 @@
             "Unicode-DFS-2015"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/mysql-connector-j-9.7.0.jar",
           "AnalyzedBy": "jar"
@@ -322,7 +322,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/istack-commons-runtime-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -338,7 +338,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/HikariCP-7.0.2.jar",
           "AnalyzedBy": "jar"
@@ -354,7 +354,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/commons-logging-1.3.6.jar",
           "AnalyzedBy": "jar"
@@ -370,7 +370,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-commons-1.17.2.jar",
           "AnalyzedBy": "jar"
@@ -386,7 +386,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-core-1.17.2.jar",
           "AnalyzedBy": "jar"
@@ -402,7 +402,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-jakarta9-1.17.2.jar",
           "AnalyzedBy": "jar"
@@ -418,7 +418,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-observation-1.17.2.jar",
           "AnalyzedBy": "jar"
@@ -434,7 +434,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/micrometer-registry-prometheus-1.17.2.jar",
           "AnalyzedBy": "jar"
@@ -450,7 +450,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-config-1.7.0.jar",
           "AnalyzedBy": "jar"
@@ -466,7 +466,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-core-1.7.0.jar",
           "AnalyzedBy": "jar"
@@ -482,7 +482,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-exposition-formats-1.7.0.jar",
           "AnalyzedBy": "jar"
@@ -498,7 +498,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-exposition-textformats-1.7.0.jar",
           "AnalyzedBy": "jar"
@@ -514,7 +514,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-model-1.7.0.jar",
           "AnalyzedBy": "jar"
@@ -530,7 +530,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/prometheus-metrics-tracer-common-1.7.0.jar",
           "AnalyzedBy": "jar"
@@ -546,7 +546,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.activation-api-2.1.4.jar",
           "AnalyzedBy": "jar"
@@ -563,7 +563,7 @@
             "GPL-2.0-with-classpath-exception"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.annotation-api-3.0.0.jar",
           "AnalyzedBy": "jar"
@@ -579,7 +579,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.inject-api-2.0.1.jar",
           "AnalyzedBy": "jar"
@@ -596,7 +596,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.persistence-api-3.2.0.jar",
           "AnalyzedBy": "jar"
@@ -613,7 +613,7 @@
             "GPL-2.0-with-classpath-exception"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.transaction-api-2.0.1.jar",
           "AnalyzedBy": "jar"
@@ -629,7 +629,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jakarta.xml.bind-api-4.0.5.jar",
           "AnalyzedBy": "jar"
@@ -645,7 +645,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/byte-buddy-1.18.15.jar",
           "AnalyzedBy": "jar"
@@ -658,7 +658,7 @@
           },
           "Version": "4.13.2",
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/antlr4-runtime-4.13.2.jar",
           "AnalyzedBy": "jar"
@@ -674,7 +674,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/log4j-api-2.25.5.jar",
           "AnalyzedBy": "jar"
@@ -690,7 +690,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/log4j-to-slf4j-2.25.5.jar",
           "AnalyzedBy": "jar"
@@ -706,7 +706,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/tomcat-embed-core-11.0.27.jar",
           "AnalyzedBy": "jar"
@@ -722,7 +722,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/tomcat-embed-el-11.0.27.jar",
           "AnalyzedBy": "jar"
@@ -738,7 +738,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/tomcat-embed-websocket-11.0.27.jar",
           "AnalyzedBy": "jar"
@@ -751,7 +751,7 @@
           },
           "Version": "1.9.25.1",
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/aspectjweaver-1.9.25.1.jar",
           "AnalyzedBy": "jar"
@@ -767,7 +767,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/angus-activation-2.0.3.jar",
           "AnalyzedBy": "jar"
@@ -783,7 +783,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jaxb-core-4.0.9.jar",
           "AnalyzedBy": "jar"
@@ -799,7 +799,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jaxb-runtime-4.0.9.jar",
           "AnalyzedBy": "jar"
@@ -815,7 +815,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/txw2-4.0.9.jar",
           "AnalyzedBy": "jar"
@@ -832,7 +832,7 @@
             "BSD-2-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/HdrHistogram-2.2.2.jar",
           "AnalyzedBy": "jar"
@@ -848,7 +848,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/hibernate-models-1.1.2.jar",
           "AnalyzedBy": "jar"
@@ -864,7 +864,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/hibernate-core-7.4.13.Final.jar",
           "AnalyzedBy": "jar"
@@ -880,7 +880,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jboss-logging-3.6.3.Final.jar",
           "AnalyzedBy": "jar"
@@ -896,7 +896,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jspecify-1.0.1.jar",
           "AnalyzedBy": "jar"
@@ -912,7 +912,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jul-to-slf4j-2.0.20.jar",
           "AnalyzedBy": "jar"
@@ -928,7 +928,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/slf4j-api-2.0.20.jar",
           "AnalyzedBy": "jar"
@@ -944,7 +944,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -960,7 +960,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-actuator-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -976,7 +976,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-actuator-autoconfigure-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -992,7 +992,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-autoconfigure-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1008,7 +1008,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-data-commons-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1024,7 +1024,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-data-jpa-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1040,7 +1040,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-health-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1056,7 +1056,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-hibernate-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1072,7 +1072,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-http-converter-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1088,7 +1088,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-jackson-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1104,7 +1104,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-jarmode-tools-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1120,7 +1120,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-jdbc-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1136,7 +1136,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-jpa-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1152,7 +1152,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-micrometer-metrics-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1168,7 +1168,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-micrometer-observation-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1184,7 +1184,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-persistence-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1200,7 +1200,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-servlet-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1216,7 +1216,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-sql-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1232,7 +1232,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-tomcat-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1248,7 +1248,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-transaction-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1264,7 +1264,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-web-server-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1280,7 +1280,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-boot-webmvc-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1296,7 +1296,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-data-commons-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1312,7 +1312,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-data-jpa-4.1.2.jar",
           "AnalyzedBy": "jar"
@@ -1329,7 +1329,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-aop-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1346,7 +1346,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-aspects-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1363,7 +1363,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-beans-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1380,7 +1380,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-context-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1397,7 +1397,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-core-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1414,7 +1414,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-expression-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1431,7 +1431,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-jdbc-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1448,7 +1448,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-orm-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1465,7 +1465,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-tx-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1482,7 +1482,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-web-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1499,7 +1499,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/spring-webmvc-7.0.10.jar",
           "AnalyzedBy": "jar"
@@ -1515,7 +1515,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/snakeyaml-2.6.jar",
           "AnalyzedBy": "jar"
@@ -1528,7 +1528,7 @@
           },
           "Version": "1.0",
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar",
           "AnalyzedBy": "jar"
@@ -1544,7 +1544,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jackson-core-3.1.7.jar",
           "AnalyzedBy": "jar"
@@ -1560,7 +1560,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:4e60891e85da824a1699483954a7d0d3394626cc20be470edf6732482c53b77a"
+            "DiffID": "sha256:221ad503a3e580e5549d8b471ff5c87bd07c4373527712f3b6eaac7798d540b6"
           },
           "FilePath": "app/app.jar/BOOT-INF/lib/jackson-databind-3.1.7.jar",
           "AnalyzedBy": "jar"
@@ -1594,7 +1594,7 @@
             "stdlib@v1.27.3"
           ],
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1608,7 +1608,7 @@
           "Version": "v1.27.3",
           "Relationship": "direct",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1621,7 +1621,7 @@
           },
           "Version": "v0.0.0-20230320061759-8cc1b52080c5",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1634,7 +1634,7 @@
           },
           "Version": "v0.0.0-20230403090104-105d09a091b8",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1647,7 +1647,7 @@
           },
           "Version": "v0.0.0-20230522092633-7947a7587f5b",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1660,7 +1660,7 @@
           },
           "Version": "v1.5.3",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1673,7 +1673,7 @@
           },
           "Version": "v0.48.0",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1686,7 +1686,7 @@
           },
           "Version": "v0.46.0",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1699,7 +1699,7 @@
           },
           "Version": "v2.0.0-20161208151619-d5d1b5820637",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1712,7 +1712,7 @@
           },
           "Version": "v2.4.0",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         },
@@ -1725,7 +1725,7 @@
           },
           "Version": "v3.0.1",
           "Layer": {
-            "DiffID": "sha256:5cac300e390e2fd748b258618f403b7813229929ad6de903b0c52a210a930824"
+            "DiffID": "sha256:2a89eb4dbc78f8fe790775a4e807e1355ba2f6b145c8dd7a267a782df1605124"
           },
           "AnalyzedBy": "gobinary"
         }
