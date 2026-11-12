@@ -8,7 +8,7 @@ Usage:
   runtime_checks.py kubescape <kubescape.json> <min-compliance-percent>
   runtime_checks.py lynis <lynis-report.dat> <min-hardening-index>
   runtime_checks.py falco <falco-log.txt> <pod-name>
-
+    # API_KEY= 1343143EFVDFVFDVFDVERERERERERFDSSQDSQDSQ
 Exit code 1 means "risk found" (the stage becomes UNSTABLE, the build continues).
 """
 

@@ -3,16 +3,16 @@
   "Trivy": {
     "Version": "0.76.2"
   },
-  "ReportID": "01a1cf3d-6e48-7a5b-9961-9a5a94d96bfa",
-  "CreatedAt": "2026-11-12T10:11:12.072680179Z",
-  "ArtifactID": "sha256:02adf418a01dab6c23cbd6080151e4c473b2d28a68dae264054971e7eeeaca6a",
+  "ReportID": "01a1cf4e-568d-7906-a393-c84c2ac7e4ff",
+  "CreatedAt": "2026-11-12T10:29:40.109593509Z",
+  "ArtifactID": "sha256:4ccc96f01717ac123c30b7e0e5bebe07c2bb6fe509e3d04718ab4c3c2072d0ef",
   "ArtifactName": "/src",
   "ArtifactType": "repository",
   "Metadata": {
     "RepoURL": "https://github.com/Safwen-amaira/DevSecOps-ESPRIT.git",
     "Branch": "master",
-    "Commit": "9387393dc639b910896199557ae9c580a273e61c",
-    "CommitMsg": "testing workflow",
+    "Commit": "2edd1cbfe712c1e2e3aea7e366ea611f81e398c4",
+    "CommitMsg": "test",
     "Author": "Safwen-amaira \u003camairasafwen@icloud.com\u003e",
     "Committer": "Safwen-amaira \u003camairasafwen@icloud.com\u003e"
   },

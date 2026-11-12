@@ -6,7 +6,6 @@ rules:
   # ============================================================
   # A01: Broken Access Control
 
-  #SECRET_KEY = fdsdfjdfsjdfjsksfdkds32443T12431242123123
   - id: missing-authorization-annotation
     patterns:
       - pattern: |
