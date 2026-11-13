@@ -160,5 +160,5 @@ jobs:
         run: |
           curl --fail --silent --show-error -X POST \
             --user "$JENKINS_USER:$JENKINS_API_TOKEN" \
-            "http://jenkins:8080/job/YOUR_JOB_NAME/buildWithParameters" \
+            "http://jenkins:8080/job/DevSecOps-ESPRIT/buildWithParameters" \
             --data-urlencode "COMMIT=${{ github.sha }}"
