@@ -1,6 +1,6 @@
 pipeline {
   agent any
-  triggers { cron('H/5 * * * *') }
+  parameters { string(name: 'COMMIT', defaultValue: '', description: 'Commit SHA sent by GitHub Actions (empty = manual run on master)') }
   options { timestamps(); disableConcurrentBuilds(); buildDiscarder(logRotator(numToKeepStr: '20')) }
   environment {
     REPOSITORY = 'https://github.com/Safwen-amaira/DevSecOps-ESPRIT.git'
@@ -12,11 +12,13 @@ pipeline {
   stages {
     stage('Checkout candidate') {
       steps {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: env.REPOSITORY]], extensions: [[$class: 'CleanBeforeCheckout']]])
+        checkout([$class: 'GitSCM', branches: [[name: params.COMMIT ?: '*/master']], userRemoteConfigs: [[url: env.REPOSITORY]], extensions: [[$class: 'CleanBeforeCheckout']]])
         script { env.CANDIDATE_SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim() }
       }
     }
     stage('Require successful GitHub security workflow') {
+      // Skipped when GitHub Actions triggered this build: its security jobs already passed (needs:).
+      when { expression { !params.COMMIT } }
       steps {
         script {
           timeout(time: 15, unit: 'MINUTES') {
@@ -50,7 +52,7 @@ pipeline {
 
 
 
-      
+
 
 stage('SonarQube Analysis') {
     steps {
@@ -85,7 +87,7 @@ stage('SonarQube Quality Gate') {
     }
 }
 
-      
+
     stage('Pre-deploy security gates') {
       steps {
         sh '''

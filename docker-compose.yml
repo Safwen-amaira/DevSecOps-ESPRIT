@@ -58,6 +58,19 @@ services:
       kubeconfig-init: {condition: service_started}
     restart: unless-stopped
     networks: [devsecops]
+  # Self-hosted GitHub Actions runner on the devsecops network so workflows can
+  # call Jenkins at http://jenkins:8080. Needs GITHUB_PAT in .env (fine-grained
+  # PAT for this repo). Do NOT mount docker.sock here.
+  github-runner:
+    image: myoung34/github-runner:latest
+    environment:
+      REPO_URL: https://github.com/Safwen-amaira/DevSecOps-ESPRIT
+      ACCESS_TOKEN: ${GITHUB_PAT:-}
+      RUNNER_NAME: devsecops-local
+      LABELS: jenkins-local
+    depends_on: [jenkins]
+    restart: unless-stopped
+    networks: [devsecops]
   sonar-db:
     image: postgres:15-alpine
     environment:
