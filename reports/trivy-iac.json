@@ -3,16 +3,16 @@
   "Trivy": {
     "Version": "0.76.2"
   },
-  "ReportID": "01a1d9bc-64fd-7be5-9249-8cb63fa3bb97",
-  "CreatedAt": "2026-11-14T11:06:04.925781648Z",
-  "ArtifactID": "sha256:2dbb256b79c3a5c9cb74fd97a5979d5dd9c4cd62e01d54cd4f5c40df411577e2",
+  "ReportID": "01a1d9f4-025c-7b30-bbca-d868f81c0fbb",
+  "CreatedAt": "2026-11-14T12:06:49.692737922Z",
+  "ArtifactID": "sha256:c747dcfed08ee00b7a39f85888d8579b823ed3e7cc3482af7b225dc2320b03ca",
   "ArtifactName": "/src",
   "ArtifactType": "repository",
   "Metadata": {
     "RepoURL": "https://github.com/Safwen-amaira/DevSecOps-ESPRIT.git",
     "Branch": "master",
-    "Commit": "c7747dd899b56da2a128b241d53496f24a0a702c",
-    "CommitMsg": "starting the workflow . i use --no-verify to by pass another error due to ressources of my pc",
+    "Commit": "46571a0763bf6f158c923492b373aa520c971994",
+    "CommitMsg": "testing for the workflows and their automatic starting.",
     "Author": "Safwen-amaira \u003camairasafwen@icloud.com\u003e",
     "Committer": "Safwen-amaira \u003camairasafwen@icloud.com\u003e"
   },

@@ -17,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Contrat implements Serializable {
 
 
+
+
+
 	/**
 	 *
 	 */
